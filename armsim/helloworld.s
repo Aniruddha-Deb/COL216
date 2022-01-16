@@ -12,6 +12,6 @@
     swi SWI_Exit
 
     .data
-HW: .asciz "Hello, World!"
+HW: .asciz "Hello, World!\n"
     .end
 
