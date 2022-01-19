@@ -1,4 +1,4 @@
-.include "swi_instr.s"
+.include "../Programming/COL216/swi_instr.s"
 
     .text
     mov r0, #STDOUT
