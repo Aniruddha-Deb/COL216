@@ -1,0 +1,49 @@
+Stage 1 Report:
+
+The Program is composed of three main subroutines (among other helper routines):
+1. is_alph: this subroutine takes a character in register 0 and stores a 1 in 
+   that register if the character is an alphabet (ascii code 65-90 or 97-122)
+2. to_upper_case: this subroutine takes a character in register r0 and replaces
+   it with the upper case version of the character if it is an alphabet, or the
+   unchanged character otherwise
+3. str_dict_cmp: this subroutine compares two strings according to their 
+   dictionary order. It takes pointers to two strings in r0 and r1, and a flag
+   ignore_case in r2, which is set to 1 if case is to be ignored or 0 otherwise.
+   The subroutine stores -1 in r0 if r0 comes before r1 in dictionary order, 
+   0 if r0 and r1 are equal and 1 otherwise.
+
+Test Input/Output:
+str1: apple
+str2: ball
+case (1 to ignore case, 0 otherwise): 0
+str1 is less than str2
+
+str1: apple
+str2: apple
+case (1 to ignore case, 0 otherwise): 0
+str1 and str2 are equal
+
+str1: ball
+str2: apple
+case (1 to ignore case, 0 otherwise): 0
+str1 is greater than str2
+
+str1: appLe
+str2: BAll
+case (1 to ignore case, 0 otherwise): 1
+str1 is less than str2
+
+str1: ApPlE
+str2: aPPle
+case (1 to ignore case, 0 otherwise): 1
+str1 and str2 are equal
+
+str1: BaLL
+str2: aPpLE
+case (1 to ignore case, 0 otherwise): 1
+str1 is greater than str2
+
+Notes:
+str1 and str2 are limited to 99 characters, and space separated strings are 
+allowed. Only ASCII characters to be entered (ascii code 0-127)
+
