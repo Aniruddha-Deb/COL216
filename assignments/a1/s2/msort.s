@@ -9,24 +9,12 @@
     .global strcpy
     .global strupc
     .global strcmp
+    .global strlist
+    .global merge
+    .global mdata
+    .global msort
 
     .text
-
-@ Function template:
-@ fnName: fnDescrip
-@
-@ Usage:
-@
-@ Input parameter(s):
-@
-@ Result:
-@
-@
-@fnName:
-@    stmfd sp!, {}
-@
-@    ldmfd sp!, {}
-@    bx lr
 
 @ strlen: compute length of a null-terminated ASCII string
 @
@@ -46,6 +34,7 @@ strlen:
 1:	ldrb	r2, [r3], #1
 	cmp	r2, #0
 	bne	1b
+	sub r3, #1
 	sub	r0, r3, r0
 	ldmfd	sp!, {r1-r3,lr} @ initial impl had pc in place of lr: a closer look
 	                        @ at ARMARM says that this is bad practice
@@ -97,16 +86,16 @@ strupc:
 @ strcmp: compare two strings
 @
 @ Usage:
-@    r0 = strcmp(r0, r1, r2)
+@    strcmp(r0, r1, r2)
 @ Input parameters:
 @    r0: the address of the first null-terminated ASCII string
 @    r1: the address of the second null-terminated ASCII string
 @    r2: ignore case flag (set to 1 to ignore case, 0 otherwise)
 @ Result:
-@    r0: the result of the comparision (-1 if r0 < r1, 0 if r0=r1 and 1 otherwise)
+@    CPSR stores the result of the comparision 
 @
 strcmp:
-    stmfd sp!, {r1-r4,lr}
+    stmfd sp!, {r0-r4,lr}
     mov r3, r0
     mov r4, r1
     ldr r1, =t1
@@ -135,53 +124,136 @@ lt: mov r0, #-1
 gt: mov r0, #1
     b 3f
 eq: mov r0, #0
-3:  ldmfd sp!, {r1-r4,lr}
+3:  cmp r0, #0
+    ldmfd sp!, {r0-r4,lr}
     bx lr
 
 @ strlist: create a string array given a string
 @
 @ Usage:
-@   strlist(r0, r1, r2, r3)
+@   strlist(r0, r1, r2)
 @ Input parameter(s):
 @   r0: position of target string list
 @   r1: position of list of input strings, separated by null characters
 @   r2: number of strings in list
-@   r3: 1 to store descending (for a stack) or ascending (for a mem. loc)
 @
 strlist:
     stmfd sp!, {r0-r3, lr}
     mov r3, r0
-1:  mov r0, r1
-    cmp r2, #0
+    mov r0, r1
+1:  cmp r2, #0
     ble 2f
-    str r1, [r3], #4
-    bl strlen
+    str r0, [r3], #4
+    bl strlen 
     add r0, #1
-    add r1, r0
+    add r0, r1
+    mov r1, r0
     sub r2, #1
     b 1b
-2:  ldmfd sp!, {r0-r3, lr}
-    bx lr
+2:  
+    ldmfd sp!, {r0-r3, lr} 
+    bx lr 
 
-@ merge: merge two consecutive sorted lists of strings of different lengths 
-@        in place
+@ merge: merge two sorted lists of strings 
 @ 
 @ Usage:
-@   r0 = merge(r0, r1, r2, r3, r4)
+@   r0 = merge(r0, r1, r2, r3, r4, r5)
 @ Input parameters:
-@   r0: start address of string list
-@   r1: length of first string list
-@   r2: length of second string list
-@   r3: parameters (bit0 - 1 for ignore case, 0 otherwise, bit1 - 1 for skip 
-@                   duplicates, 0 otherwise)
+@   r0: start address of first string list
+@   r1: start address of second string list
+@   r2: ignore case (1 to ignore, 0 otherwise)
+@   r3: length of first string list
+@   r4: length of second string list
+@   r5: ignore duplicates (1 to ignore, 0 otherwise)
 @ Result:
 @   r0: length of resulting string list
+@   the resulting merged list is always stored in loc mdata
 @
+@ Register descriptions:
+@   r0, r1: current list pointers
+@   r2: ignore case parameter
+@   r3, r4: final list pointers
+@   r5: ignore duplicates
+@   r6: current merge list pointer
+@   r7: length
+@   r8: jump table addend
+@   r9: jump table address
 merge:
-    stmfd lr, 
+    stmfd sp!, {r1-r9, lr}
+    add r3, r0, r3, lsl #2
+    add r4, r1, r4, lsl #2 
+    ldr r6, =mdata
+    ldr r9, =j1
+    mov r7, #0
+1:  mov r8, #0
+    cmp r0, r3
+    addlt r8, #4
+    cmp r1, r4
+    addlt r8, #2
+    cmp r8, #6
+    stmfd sp!, {r0-r1}
+    ldreq r0, [r0]
+    ldreq r1, [r1]
+    bleq strcmp
+    ldmfd sp!, {r0-r1}
+    addlt r8, #1
+    ldr pc, [r9,r8,lsl #2]
+c0: cmp r5, #1
+    bne a0
+    cmp r7, #0
+    beq a0
+    sub r6, #4
+    stmfd sp!, {r0-r1}
+    mov r1, r6
+    ldr r0, [r0]
+    ldr r1, [r1]
+    bl strcmp
+    ldmfd sp!, {r0-r1}
+    add r6, #4
+    bne a0
+    add r0, #4
+    b 1b
+a0: stmfd sp!, {r0}
+    ldr r0, [r0]
+    str r0, [r6], #4
+    ldmfd sp!, {r0}
+    add r7, #1
+    add r0, #4
+    b 1b
+c1: cmp r5, #1
+    bne a1
+    cmp r7, #0
+    beq a1
+    sub r6, #4
+    stmfd sp!, {r0-r1}
+    mov r0, r6
+    ldr r0, [r0]
+    ldr r1, [r1]
+    bl strcmp
+    ldmfd sp!, {r0-r1}
+    add r6, #4
+    bne a1
+    add r1, #4
+    b 1b
+a1: stmfd sp!, {r1}
+    ldr r1, [r1]
+    str r1, [r6], #4
+    ldmfd sp!, {r1}
+    add r7, #1
+    add r1, #4
+    b 1b
+tm: mov r0, r7
+    ldmfd sp!, {r1-r9, lr}
+    bx lr
+j1: .word tm, tm, c1, c1, c0, c0, c1, c0
+
+@ msort: sort a list of string pointers using merge sort
+@
+@ Usage
 
 
 
     .data
 t1: .skip 256
 t2: .skip 256
+mdata: .skip 1000

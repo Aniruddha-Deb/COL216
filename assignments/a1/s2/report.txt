@@ -1,0 +1,74 @@
+Stage 2 Report:
+
+The subroutines from the previous program have been remade from scratch in idiomatic assembly, to ensure more efficiency and cleaner register handling. The protocol now is to modify ONLY the registers where values are returned. This allows for reusing registers and much cleaner code.
+
+The main additions are `strlist`, a function that takes a null-character separated list of ASCII strings and makes a list of pointers to those strings, and `merge`, the main merging algorithm, that takes two sorted lists and merges them together. The control flow and algorithm of merge is described in merge.pdf. merge uses a jump table to go to an appropriate line of control, and then executes the specified instructions
+
+Version info:
+tested on ARMSim v.2.0.1 with legacy SWI instruction set. 
+
+Testing instructions:
+To run, load `tests.s` and `msort.s` both together into ARMSim, with tests before msort, and then run tests. The main test is merge_test, which takes as input two lists of strings (each limited to 1000 bytes and atmost 400 unique strings), and then merges the two lists together. The resulting merged list is stored in the `mdata` location, and the length is returned in register r0.
+
+Testing is interactive, and requires the user to input/output strings to the program
+
+Tests run:
+
+length of list: 1
+String 1: apple
+length of list: 1
+String 1: ball
+duplicate removal (1 to remove, 0 otherwise): 0
+case (1 to ignore case, 0 otherwise): 0
+apple ball
+
+length of list: 3
+String 1: apple
+String 2: zLIB
+String 3: zlib
+length of list: 3
+String 1: zLIB
+String 2: zLib
+String 3: zlib
+duplicate removal (1 to remove, 0 otherwise): 1
+case (1 to ignore case, 0 otherwise): 0
+apple zLIB zLib zlib 
+
+length of list: 2
+String 1: APPLE
+String 2: APPle
+length of list: 2
+String 1: apPLE
+String 2: apple
+duplicate removal (1 to remove, 0 otherwise): 0
+case (1 to ignore case, 0 otherwise): 1
+apPLE apple APPLE APPle 
+
+length of list: 3
+String 1: apple
+String 2: zLIB
+String 3: zlib
+length of list: 3
+String 1: APPLe
+String 2: zLib
+String 3: zlib
+duplicate removal (1 to remove, 0 otherwise): 1
+case (1 to ignore case, 0 otherwise): 1
+APPLe zLib 
+
+length of list: 0
+length of list: 1
+String 1: apple
+duplicate removal (1 to remove, 0 otherwise): 0
+case (1 to ignore case, 0 otherwise): 0
+apple
+
+length of list: 0
+length of list: 0
+duplicate removal (1 to remove, 0 otherwise): 0
+case (1 to ignore case, 0 otherwise): 0
+
+Comments:
+further comments/documentation about each function are contained in the source files.
+
+length of list: 

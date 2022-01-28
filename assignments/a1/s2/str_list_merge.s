@@ -21,7 +21,7 @@
 @ i2 := 0 (pointer to current location in l2)
 @ i3 := 0 (pointer to head of target list l3)
 @ for i in 0...min(l1,l2)-1 do
-@   if l1[i] < l2[i] then 
+@   if l1[i] < l2[i] then min_str = *l1[i] else min_str = *l2[i]
 @     if ignore_duplicates and i3 > 0 and l1[i] = l3[i3--] then
 @       i1++
 @     else
