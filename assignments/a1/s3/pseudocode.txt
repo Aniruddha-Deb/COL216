@@ -1,0 +1,18 @@
+Operation:
+r0: address of the first list
+r1: address of the second list
+r2: length of first list
+r3: length of second list
+r4: parameters (bit0 - 1 to ignore case, bit1 - 1 to ignore duplicate)
+r5: head of first list
+r6: head of second list
+r7: head of third list
+
+
+function push(str, list, :
+    
+
+function merge:
+12345123456
+
+12345123456
