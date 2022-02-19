@@ -141,8 +141,8 @@ begin
     data_in <= data_mem_out when M2R = '1' else ans;
 
     -- ? do we count PC modulo 64? will prevent overflow
-    PC_plus1 <= std_logic_vector(unsigned(PC)+1); -- PC has word only addressing, so no need to add 4
-    PC_branch <= std_logic_vector(unsigned(PC) + unsigned(instruction(5 downto 0)));
+    PC_plus1 <= std_logic_vector(signed(PC)+1); -- PC has word only addressing, so no need to add 4
+    PC_branch <= std_logic_vector(signed(PC) + 2 + signed(instruction(5 downto 0)));
     PC_in <= PC_branch when B = '1' else PC_plus1;
     PC <= PC_in when rising_edge(clock);
     

@@ -13,15 +13,17 @@ architecture prog_mem_df of prog_mem is
 
     type mem is array(63 downto 0) of std_logic_vector(31 downto 0);
     signal rom: mem := (
-0 => X"E3A0000A",
-1 => X"E3A01005",
-2 => X"E5801000",
-3 => X"E2811002",
-4 => X"E5801004",
-5 => X"E5902000",
-6 => X"E5903004",
-7 => X"E0434002",
-others => X"00000000"
+0 => x"E3A00001",
+1 => x"E3A01001",
+2 => x"E1500001",
+3 => x"0A000001",
+4 => x"E1500001",
+5 => x"1A000001",
+6 => x"E2411001",
+7 => x"EAFFFFFB",
+8 => x"E2400001",
+9 => x"E1510000",
+others => x"00000000"
                        ); 
 
 begin
