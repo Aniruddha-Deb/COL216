@@ -1,0 +1,197 @@
+precision: Setting MGC_HOME to /usr/share/precision/Mgc_home ...
+precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Source)  -- 3.13.0-71-generic -- x86_64 
+//  Precision RTL Synthesis 64-bit 2021.1.0.4 (Production Release) Tue Jul 20 01:22:31 PDT 2021
+//  
+//  Copyright (c) Mentor Graphics Corporation, 1996-2021, All Rights Reserved.
+//             Portions copyright 1991-2008 Compuware Corporation
+//                       UNPUBLISHED, LICENSED SOFTWARE.
+//            CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+//          PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+//  
+//  Running on Linux runner@2b4e4c96bd74 #114-Ubuntu SMP Tue Dec 1 02:34:22 UTC 2015 3.13.0-71-generic x86_64
+//  
+//  Start time Tue Feb  8 06:31:50 2022
+# -------------------------------------------------
+# Info: [9569]: Logging session transcript to file /home/runner/precision.log
+# Warning: [9508]: Results directory is not set. Use new_project, open_project, or set_results_dir.
+# Info: [9577]: Input directory: /home/runner
+# Info: [9572]: Moving session transcript to file /home/runner/precision.log
+# Info: [9558]: Created project /home/runner/project_1.psp in folder /home/runner.
+# Info: [9531]: Created directory: /home/runner/impl_1.
+# Info: [9557]: Created implementation impl_1 in project /home/runner/project_1.psp.
+# Info: [9578]: The Results Directory has been set to: /home/runner/impl_1/
+# Info: [9569]: Logging project transcript to file /home/runner/impl_1/precision.log
+# Info: [9569]: Logging suppressed messages transcript to file /home/runner/impl_1/precision.log.suppressed
+# Info: [9552]: Activated implementation impl_1 in project /home/runner/project_1.psp.
+# Info: [20026]: MultiProc: Precision will use a maximum of 8 logical processors.
+# Info: [15302]: Setting up the design to use synthesis library "xca7.syn"
+# Info: [585]: The global max fanout is currently set to 10000 for Xilinx - ARTIX-7.
+# Info: [15328]: Setting Part to: "7A100TCSG324".
+# Info: [15329]: Setting Process to: "1".
+# Info: [7513]: The default input to Vivado place and route has been set to "Verilog".
+# Info: [7512]: The place and route tool for current technology is Vivado.
+# Info: [3052]: Decompressing file : /usr/share/precision/Mgc_home/pkgs/psr/techlibs/xca7.syn in /home/runner/impl_1/synlib.
+# Info: [3022]: Reading file: /home/runner/impl_1/synlib/xca7.syn.
+# Info: [645]: Loading library initialization file /usr/share/precision/Mgc_home/pkgs/psr/userware/xilinx_rename.tcl
+# Info: [40000]: vhdlorder, Release 2021a.12
+# Info: [40000]: Files sorted successfully.
+# Info: [40000]: hdl-analyze, Release RTLC-Precision 2021a.12
+# Info: [42502]: Analyzing input file "/home/runner/design.vhd" ...
+# Info: [670]: Top module of the design is set to: prog_mem.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [40000]: RTLC-Driver, Release RTLC-Precision 2021a.12
+# Info: [40000]: Last compiled on Jul  2 2021 08:23:33
+# Info: [44512]: Initializing...
+# Info: [44504]: Partitioning design ....
+# Info: [40000]: RTLCompiler, Release RTLC-Precision 2021a.12
+# Info: [40000]: Last compiled on Jul  2 2021 08:49:53
+# Info: [44512]: Initializing...
+# Info: [44522]: Root Module work.prog_mem(prog_mem_df): Pre-processing...
+# Warning: [45730]: "/home/runner/design.vhd", line 15: signal rom has no drivers, will be treated as don't care.
+# Info: [44523]: Root Module work.prog_mem(prog_mem_df): Compiling...
+# Info: [45193]: "/home/runner/design.vhd", line 7: Net addr[5:0] is unused after optimization
+# Info: [44842]: Compilation successfully completed.
+# Info: [44856]: Total lines of RTL compiled: 12.
+# Info: [44835]: Total CPU time for compilation: 0.0 secs.
+# Info: [44513]: Overall running time for compilation: 0.0 secs.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [15334]: Doing rtl optimizations.
+# Info: [671]: Finished compiling design.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [20026]: MultiProc: Precision will use a maximum of 8 logical processors.
+# Info: [15002]: Optimizing design view:.work.prog_mem.prog_mem_df
+# Info: [15002]: Optimizing design view:.work.prog_mem.prog_mem_df
+# Info: [8010]: Gated clock transformations: Begin...
+# Info: [8010]: Gated clock transformations: End...
+# Info: [3027]: Writing file: /home/runner/impl_1/prog_mem.edf.
+# Info: [3027]: Writing file: /home/runner/impl_1/prog_mem.xdc.
+# Info: -- Writing file /home/runner/impl_1/prog_mem.tcl
+# Info: [3027]: Writing file: /home/runner/impl_1/prog_mem.v.
+# Info: -- Writing file /home/runner/impl_1/prog_mem.tcl
+# Info: [671]: Finished synthesizing design.
+# Info: [11019]: Total CPU time for synthesis: 0.1 s secs.
+# Info: [11020]: Overall running time for synthesis: 0.2 s secs.
+# Info: /home/runner/impl_1/precision_tech.sdc
+# Info: [3027]: Writing file: /home/runner/precision.v.
+# Info: [3027]: Writing file: /home/runner/precision.xdc.
+# Info: -- Writing file /home/runner/impl_1/prog_mem.tcl
+# Info: Info, Command 'auto_write' finished successfully
+# Info: Num  File Type  Path
+# Info: ---------------------------------------------------------------
+# Info: 0               /home/runner/impl_1/prog_mem_area.rep
+# Info: 1               /home/runner/impl_1/prog_mem_con_rep.sdc
+# Info: 2               /home/runner/impl_1/prog_mem_tech_con_rep.sdc
+# Info: 3               /home/runner/impl_1/prog_mem_fsm.rep
+# Info: 4               /home/runner/impl_1/prog_mem_dsp_modes.rep
+# Info: 5               /home/runner/impl_1/prog_mem_ram_modes.rep
+# Info: 6               /home/runner/impl_1/prog_mem_env.htm
+# Info: 7               /home/runner/impl_1/prog_mem.edf
+# Info: 8               /home/runner/impl_1/prog_mem.v
+# Info: 9               /home/runner/impl_1/prog_mem.xdc
+# Info: 10              /home/runner/impl_1/prog_mem.tcl
+# Info: ***************************************************************
+# Info: Device Utilization for 7A100TCSG324
+# Info: ***************************************************************
+# Info: Resource                          Used    Avail   Utilization
+# Info: ---------------------------------------------------------------
+# Info: IOs                               38      210      18.10%
+# Info: Global Buffers                    0       32        0.00%
+# Info: LUTs                              0       63400     0.00%
+# Info: CLB Slices                        0       15850     0.00%
+# Info: Dffs or Latches                   0       126800    0.00%
+# Info: Block RAMs                        0       135       0.00%
+# Info: DSP48E1s                          0       240       0.00%
+# Info: ---------------------------------------------------------------
+# Info: **************************************************************
+# Info: Library: work    Cell: prog_mem    View: prog_mem_df
+# Info: **************************************************************
+# Info:  Number of ports :                           38
+# Info:  Number of nets :                            33
+# Info:  Number of instances :                       33
+# Info:  Number of references to this view :          0
+# Info: Total accumulated area : unknown
+# Info: *****************************
+# Info:  IO Register Mapping Report
+# Info: *****************************
+# Info: Design: work.prog_mem.prog_mem_df
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | Port        | Direction |   INFF   |  OUTFF   |  TRIFF   |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | addr(5)     | Input     |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | addr(4)     | Input     |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | addr(3)     | Input     |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | addr(2)     | Input     |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | addr(1)     | Input     |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | addr(0)     | Input     |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(31)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(30)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(29)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(28)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(27)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(26)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(25)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(24)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(23)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(22)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(21)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(20)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(19)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(18)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(17)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(16)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(15)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(14)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(13)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(12)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(11)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(10)    | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(9)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(8)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(7)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(6)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(5)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(4)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(3)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(2)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(1)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: | data(0)     | Output    |          |          |          |
+# Info: +-------------+-----------+----------+----------+----------+
+# Info: Total registers mapped: 0
+# Info: [12022]: Design has no timing constraint and no timing information.

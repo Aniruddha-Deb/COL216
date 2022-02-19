@@ -1,0 +1,38 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity alu is 
+    port (
+        shift_op: in std_logic_vector(31 downto 0);
+        op: in std_logic_vector(31 downto 0); 
+        carry_in: in std_logic;
+        opcode: in std_logic_vector(3 downto 0);
+        carry_out: out std_logic;
+        ans: out std_logic_vector(31 downto 0)
+    );
+end alu;
+
+architecture alu_bvr of alu is
+    signal temp_ans: std_logic_vector(32 downto 0);
+begin
+    temp_ans <= '0' & (op and shift_op) when opcode = "0000" else 
+                '0' & (op xor shift_op) when opcode = "0001" else 
+                std_logic_vector(resize(unsigned(op),33) - resize(unsigned(shift_op),33)) when opcode = "0010" else 
+                std_logic_vector(resize(unsigned(shift_op),33) - resize(unsigned(op),33)) when opcode = "0011" else 
+                std_logic_vector(resize(unsigned(shift_op),33) + resize(unsigned(op),33)) when opcode = "0100" else 
+                std_logic_vector(resize(unsigned(shift_op),33) + resize(unsigned(op),33) + unsigned'('0'&carry_in)) when opcode = "0101" else 
+                std_logic_vector(resize(unsigned(op),33) - resize(unsigned(shift_op),33) - unsigned'('0'&(not carry_in))) when opcode = "0110" else 
+                std_logic_vector(resize(unsigned(shift_op),33) - resize(unsigned(op),33) - unsigned'('0'&(not carry_in))) when opcode = "0111" else 
+                '0' & (op and shift_op) when opcode = "1000" else 
+                '0' & (op xor shift_op) when opcode = "1001" else 
+                std_logic_vector(resize(unsigned(op),33) - resize(unsigned(shift_op),33)) when opcode = "1010" else 
+                std_logic_vector(resize(unsigned(shift_op),33) + resize(unsigned(op),33)) when opcode = "1011" else 
+                '0' & (op or shift_op) when opcode = "1100" else 
+                '0' & shift_op when opcode = "1101" else 
+                '0' & (op and (not shift_op)) when opcode = "1110" else 
+                '0' & (not shift_op) when opcode = "1111";
+
+    ans <= temp_ans(31 downto 0);
+    carry_out <= temp_ans(32);
+end alu_bvr;

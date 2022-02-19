@@ -1,0 +1,39 @@
+v 4
+file . "cpu.vhdl" "852b19a1685833836c64982b80f95ca3cab104e7" "20220219153552.735":
+  entity cpsr_reg at 1( 0) + 0 on 324;
+  architecture cpsr_reg_arc of cpsr_reg at 13( 257) + 0 on 325;
+  entity condition_checker at 18( 395) + 0 on 326;
+  architecture condition_checker_arc of condition_checker at 29( 641) + 0 on 327;
+  entity cpu at 37( 938) + 0 on 328;
+  architecture cpu_arch of cpu at 48( 1100) + 0 on 329;
+file . "mytypes.vhdl" "14afcd6b5dfecb4b7b9e8a73aad2893d566cee7d" "20220219054004.869":
+  package mytypes at 1( 0) + 0 on 104;
+  package body mytypes at 19( 704) + 0 on 105;
+file . "alu.vhdl" "b7f4b5844e772b48cf6ef0ab8b27c3199e7b6223" "20220208123707.010":
+  entity alu at 1( 0) + 0 on 94;
+  architecture alu_bvr of alu at 16( 374) + 0 on 95;
+file . "mem.vhdl" "fb33b728b87902ca1cf54945527023cd7644d6b9" "20220219103501.334":
+  entity prog_mem at 1( 0) + 0 on 296;
+  architecture prog_mem_df of prog_mem at 12( 218) + 0 on 297;
+  entity data_mem at 31( 616) + 0 on 298;
+  architecture data_mem_bvr of data_mem at 46( 1052) + 0 on 299;
+file . "regfile.vhdl" "4cb6a9729b0c48d6a7713d59d2f91689804562d1" "20220219085217.332":
+  entity regfile at 10( 192) + 0 on 182;
+  architecture regfile_bvr of regfile at 27( 669) + 0 on 183;
+file . "regfile_tb.vhdl" "e09c4ff44fbdf54282edd640960f92bbb09573df" "20220208082723.126":
+  entity regfile_tb at 1( 0) + 0 on 19;
+  architecture regfile_tb_bvr of regfile_tb at 7( 82) + 0 on 20;
+file . "mem_tb.vhdl" "0be9e20182f32c982c2f3bc5b7e77cfdea08fcd2" "20220208085445.230":
+  entity prog_mem_tb at 1( 0) + 0 on 54;
+  architecture prog_mem_tb_bvr of prog_mem_tb at 8( 110) + 0 on 55;
+  entity data_mem_tb at 28( 519) + 0 on 56;
+  architecture data_mem_tb_bvr of data_mem_tb at 35( 629) + 0 on 57;
+file . "alu_tb.vhdl" "28fec77fab4f02ce581bd8aece47aeb05a62383e" "20220208123825.059":
+  entity alu_tb at 1( 0) + 0 on 100;
+  architecture alu_tb_arc of alu_tb at 7( 74) + 0 on 101;
+file . "decoder.vhdl" "a5043c769e8433cf436f7c679646f0cae1753b41" "20220219054029.569":
+  entity decoder at 3( 22) + 0 on 110;
+  architecture behavioral of decoder at 20( 422) + 0 on 111;
+file . "cpu_tb.vhdl" "bd134571a330ec74c029205b129ebf0d81546ef3" "20220219150410.288":
+  entity cpu_tb at 1( 0) + 0 on 322;
+  architecture cpu_tb_arc of cpu_tb at 7( 74) + 0 on 323;
