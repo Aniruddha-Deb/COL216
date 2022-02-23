@@ -1,0 +1,601 @@
+digraph m100 {
+  p0 [label="\clock"];
+  p0 -> i200 [label="n1"];
+  p0 -> i64 [label="n1"];
+  p0 -> i62 [label="n1"];
+  p0 -> i57 [label="n1"];
+
+  i3 [label="$const_UB32"];
+  i3 -> i202 [label="n2"];
+  i3 -> i4 [label="n2"];
+
+  i4 [label="$isignal"];
+  i4 -> i196 [label="n3"];
+  i4 -> i194 [label="n3"];
+  i4 -> i44 [label="n3"];
+
+  i5 [label="$signal"];
+  i5 -> i202 [label="n4"];
+
+  i6 [label="$signal"];
+  i6 -> i199 [label="n5"];
+
+  i7 [label="$signal"];
+  i7 -> i199 [label="n6"];
+
+  i8 [label="$const_UB32"];
+  i8 -> i9 [label="n7"];
+
+  i9 [label="$isignal"];
+  i9 -> i199 [label="n8"];
+
+  i10 [label="$const_UB32"];
+  i10 -> i11 [label="n9"];
+
+  i11 [label="$isignal"];
+  i11 -> i57 [label="n10"];
+
+  i12 [label="$const_UB32"];
+  i12 -> i13 [label="n11"];
+
+  i13 [label="$isignal"];
+  i13 -> i137 [label="n12"];
+
+  i14 [label="$const_UB32"];
+  i14 -> i15 [label="n13"];
+
+  i15 [label="$isignal"];
+  i15 -> i139 [label="n14"];
+
+  i16 [label="$const_UB32"];
+  i16 -> i17 [label="n15"];
+
+  i17 [label="$isignal"];
+  i17 -> i192 [label="n16"];
+
+  i18 [label="$signal"];
+  i18 -> i64 [label="n17"];
+
+  i19 [label="$const_UB32"];
+  i19 -> i20 [label="n18"];
+
+  i20 [label="$isignal"];
+  i20 -> i74 [label="n19"];
+
+  i21 [label="$signal"];
+  i21 -> i175 [label="n20"];
+  i21 -> i171 [label="n20"];
+  i21 -> i162 [label="n20"];
+  i21 -> i153 [label="n20"];
+  i21 -> i145 [label="n20"];
+  i21 -> i132 [label="n20"];
+  i21 -> i123 [label="n20"];
+  i21 -> i115 [label="n20"];
+  i21 -> i107 [label="n20"];
+  i21 -> i101 [label="n20"];
+  i21 -> i96 [label="n20"];
+  i21 -> i87 [label="n20"];
+  i21 -> i73 [label="n20"];
+
+  i22 [label="$signal"];
+  i22 -> i84 [label="n21"];
+  i22 -> i81 [label="n21"];
+  i22 -> i79 [label="n21"];
+
+  i24 [label="$signal"];
+  i24 -> i98 [label="n23"];
+
+  i25 [label="$signal"];
+  i25 -> i125 [label="n24"];
+  i25 -> i117 [label="n24"];
+  i25 -> i109 [label="n24"];
+  i25 -> i89 [label="n24"];
+
+  i26 [label="$signal"];
+  i26 -> i177 [label="n25"];
+
+  i27 [label="$signal"];
+  i27 -> i187 [label="n26"];
+  i27 -> i53 [label="n26"];
+
+  i28 [label="$signal"];
+  i28 -> i188 [label="n27"];
+  i28 -> i53 [label="n27"];
+
+  i30 [label="$signal"];
+  i30 -> i53 [label="n29"];
+
+  i31 [label="$signal"];
+  i31 -> i204 [label="n30"];
+
+  i32 [label="$signal"];
+  i32 -> i192 [label="n31"];
+  i32 -> i190 [label="n31"];
+  i32 -> i184 [label="n31"];
+  i32 -> i181 [label="n31"];
+  i32 -> i66 [label="n31"];
+  i32 -> i65 [label="n31"];
+
+  i33 [label="$signal"];
+  i33 -> i57 [label="n32"];
+
+  i35 [label="$signal"];
+  i35 -> i57 [label="n34"];
+
+  i36 [label="$signal"];
+  i36 -> i140 [label="n35"];
+  i36 -> i64 [label="n35"];
+
+  i37 [label="$signal"];
+  i37 -> i62 [label="n36"];
+
+  i38 [label="$signal"];
+  i38 -> i68 [label="n37"];
+  i38 -> i54 [label="n37"];
+
+  i39 [label="$signal"];
+  i39 -> i62 [label="n38"];
+
+  i41 [label="$signal"];
+  i41 -> i192 [label="n40"];
+
+  i43 [label="$signal"];
+  i43 -> i197 [label="n42"];
+  i43 -> i169 [label="n42"];
+  i43 -> i166 [label="n42"];
+  i43 -> i163 [label="n42"];
+  i43 -> i158 [label="n42"];
+  i43 -> i154 [label="n42"];
+  i43 -> i149 [label="n42"];
+  i43 -> i146 [label="n42"];
+  i43 -> i141 [label="n42"];
+  i43 -> i138 [label="n42"];
+  i43 -> i136 [label="n42"];
+  i43 -> i130 [label="n42"];
+  i43 -> i69 [label="n42"];
+  i43 -> i59 [label="n42"];
+  i43 -> i58 [label="n42"];
+  i43 -> i46 [label="n42"];
+
+  i44 [label="\prog_mem"];
+  i44 -> i43 [label="n43"];
+
+  i46 [label="\decoder"];
+  i46 -> i21 [label="n45"];
+  i46 -> i22 [label="n46"];
+  i46 -> i24 [label="n48"];
+  i46 -> i25 [label="n49"];
+  i46 -> i26 [label="n50"];
+
+  i53 [label="\alu"];
+  i53 -> i31 [label="n57"];
+  i53 -> i32 [label="n58"];
+
+  i54 [label="$extract"];
+  i54 -> i53 [label="n59"];
+
+  i57 [label="\regfile"];
+  i57 -> i27 [label="n62"];
+  i57 -> i36 [label="n63"];
+
+  i58 [label="$extract"];
+  i58 -> i57 [label="n64"];
+
+  i59 [label="$extract"];
+  i59 -> i57 [label="n65"];
+
+  i62 [label="\cpsr_reg"];
+  i62 -> i38 [label="n68"];
+
+  i64 [label="\data_mem"];
+  i64 -> i41 [label="n70"];
+
+  i65 [label="$extract"];
+  i65 -> i64 [label="n71"];
+
+  i66 [label="$extract"];
+  i66 -> i64 [label="n72"];
+
+  i68 [label="\condition_checker"];
+  i68 -> i20 [label="n74"];
+
+  i69 [label="$extract"];
+  i69 -> i68 [label="n75"];
+
+  i71 [label="$const_UB32"];
+  i71 -> i75 [label="n77"];
+
+  i72 [label="$const_UB32"];
+  i72 -> i73 [label="n78"];
+
+  i73 [label="$eq"];
+  i73 -> i74 [label="n79"];
+
+  i74 [label="$and"];
+  i74 -> i75 [label="n80"];
+
+  i75 [label="$mux2"];
+  i75 -> i9 [label="n81"];
+
+  i76 [label="$const_UB32"];
+  i76 -> i75 [label="n82"];
+
+  i77 [label="$const_UB32"];
+  i77 -> i92 [label="n83"];
+
+  i78 [label="$const_UB32"];
+  i78 -> i79 [label="n84"];
+
+  i79 [label="$eq"];
+  i79 -> i82 [label="n85"];
+
+  i80 [label="$const_UB32"];
+  i80 -> i81 [label="n86"];
+
+  i81 [label="$eq"];
+  i81 -> i82 [label="n87"];
+
+  i82 [label="$or"];
+  i82 -> i85 [label="n88"];
+
+  i83 [label="$const_UB32"];
+  i83 -> i84 [label="n89"];
+
+  i84 [label="$eq"];
+  i84 -> i85 [label="n90"];
+
+  i85 [label="$or"];
+  i85 -> i91 [label="n91"];
+
+  i86 [label="$const_UB32"];
+  i86 -> i87 [label="n92"];
+
+  i87 [label="$eq"];
+  i87 -> i90 [label="n93"];
+
+  i88 [label="$const_UB32"];
+  i88 -> i89 [label="n94"];
+
+  i89 [label="$eq"];
+  i89 -> i90 [label="n95"];
+
+  i90 [label="$and"];
+  i90 -> i91 [label="n96"];
+
+  i91 [label="$or"];
+  i91 -> i92 [label="n97"];
+
+  i92 [label="$mux2"];
+  i92 -> i11 [label="n98"];
+
+  i93 [label="$const_UB32"];
+  i93 -> i92 [label="n99"];
+
+  i94 [label="$const_UB32"];
+  i94 -> i103 [label="n100"];
+
+  i95 [label="$const_UB32"];
+  i95 -> i96 [label="n101"];
+
+  i96 [label="$eq"];
+  i96 -> i99 [label="n102"];
+
+  i97 [label="$const_UB32"];
+  i97 -> i98 [label="n103"];
+
+  i98 [label="$eq"];
+  i98 -> i99 [label="n104"];
+
+  i99 [label="$and"];
+  i99 -> i102 [label="n105"];
+
+  i100 [label="$const_UB32"];
+  i100 -> i101 [label="n106"];
+
+  i101 [label="$eq"];
+  i101 -> i102 [label="n107"];
+
+  i102 [label="$or"];
+  i102 -> i103 [label="n108"];
+
+  i103 [label="$mux2"];
+  i103 -> i15 [label="n109"];
+
+  i104 [label="$const_UB32"];
+  i104 -> i103 [label="n110"];
+
+  i105 [label="$const_UB32"];
+  i105 -> i111 [label="n111"];
+
+  i106 [label="$const_UB32"];
+  i106 -> i107 [label="n112"];
+
+  i107 [label="$eq"];
+  i107 -> i110 [label="n113"];
+
+  i108 [label="$const_UB32"];
+  i108 -> i109 [label="n114"];
+
+  i109 [label="$eq"];
+  i109 -> i110 [label="n115"];
+
+  i110 [label="$and"];
+  i110 -> i111 [label="n116"];
+
+  i111 [label="$mux2"];
+  i111 -> i13 [label="n117"];
+
+  i112 [label="$const_UB32"];
+  i112 -> i111 [label="n118"];
+
+  i113 [label="$const_UB32"];
+  i113 -> i119 [label="n119"];
+
+  i114 [label="$const_UB32"];
+  i114 -> i115 [label="n120"];
+
+  i115 [label="$eq"];
+  i115 -> i118 [label="n121"];
+
+  i116 [label="$const_UB32"];
+  i116 -> i117 [label="n122"];
+
+  i117 [label="$eq"];
+  i117 -> i118 [label="n123"];
+
+  i118 [label="$and"];
+  i118 -> i119 [label="n124"];
+
+  i119 [label="$mux2"];
+  i119 -> i18 [label="n125"];
+
+  i120 [label="$const_UB32"];
+  i120 -> i119 [label="n126"];
+
+  i121 [label="$const_UB32"];
+  i121 -> i127 [label="n127"];
+
+  i122 [label="$const_UB32"];
+  i122 -> i123 [label="n128"];
+
+  i123 [label="$eq"];
+  i123 -> i126 [label="n129"];
+
+  i124 [label="$const_UB32"];
+  i124 -> i125 [label="n130"];
+
+  i125 [label="$eq"];
+  i125 -> i126 [label="n131"];
+
+  i126 [label="$and"];
+  i126 -> i127 [label="n132"];
+
+  i127 [label="$mux2"];
+  i127 -> i17 [label="n133"];
+
+  i128 [label="$const_UB32"];
+  i128 -> i127 [label="n134"];
+
+  i129 [label="$const_UB32"];
+  i129 -> i134 [label="n135"];
+
+  i130 [label="$extract"];
+  i130 -> i133 [label="n136"];
+
+  i131 [label="$const_UB32"];
+  i131 -> i132 [label="n137"];
+
+  i132 [label="$eq"];
+  i132 -> i133 [label="n138"];
+
+  i133 [label="$and"];
+  i133 -> i134 [label="n139"];
+
+  i134 [label="$mux2"];
+  i134 -> i39 [label="n140"];
+
+  i135 [label="$const_UB32"];
+  i135 -> i134 [label="n141"];
+
+  i136 [label="$extract"];
+  i136 -> i137 [label="n142"];
+
+  i137 [label="$mux2"];
+  i137 -> i33 [label="n143"];
+
+  i138 [label="$extract"];
+  i138 -> i137 [label="n144"];
+
+  i139 [label="$not"];
+  i139 -> i140 [label="n145"];
+
+  i140 [label="$mux2"];
+  i140 -> i28 [label="n146"];
+
+  i141 [label="$extract"];
+  i141 -> i143 [label="n147"];
+
+  i142 [label="$const_UB32"];
+  i142 -> i143 [label="n148"];
+
+  i143 [label="$concat2"];
+  i143 -> i148 [label="n149"];
+
+  i144 [label="$const_UB32"];
+  i144 -> i145 [label="n150"];
+
+  i145 [label="$eq"];
+  i145 -> i147 [label="n151"];
+
+  i146 [label="$extract"];
+  i146 -> i147 [label="n152"];
+
+  i147 [label="$and"];
+  i147 -> i148 [label="n153"];
+
+  i148 [label="$mux2"];
+  i148 -> i140 [label="n154"];
+
+  i149 [label="$extract"];
+  i149 -> i151 [label="n155"];
+
+  i150 [label="$const_UB32"];
+  i150 -> i151 [label="n156"];
+
+  i151 [label="$concat2"];
+  i151 -> i157 [label="n157"];
+
+  i152 [label="$const_UB32"];
+  i152 -> i153 [label="n158"];
+
+  i153 [label="$eq"];
+  i153 -> i156 [label="n159"];
+
+  i154 [label="$extract"];
+  i154 -> i155 [label="n160"];
+
+  i155 [label="$not"];
+  i155 -> i156 [label="n161"];
+
+  i156 [label="$and"];
+  i156 -> i157 [label="n162"];
+
+  i157 [label="$mux2"];
+  i157 -> i148 [label="n163"];
+
+  i158 [label="$extract"];
+  i158 -> i160 [label="n164"];
+
+  i159 [label="$const_UB32"];
+  i159 -> i160 [label="n165"];
+
+  i160 [label="$concat2"];
+  i160 -> i165 [label="n166"];
+
+  i161 [label="$const_UB32"];
+  i161 -> i162 [label="n167"];
+
+  i162 [label="$eq"];
+  i162 -> i164 [label="n168"];
+
+  i163 [label="$extract"];
+  i163 -> i164 [label="n169"];
+
+  i164 [label="$and"];
+  i164 -> i165 [label="n170"];
+
+  i165 [label="$mux2"];
+  i165 -> i157 [label="n171"];
+
+  i166 [label="$extract"];
+  i166 -> i168 [label="n172"];
+
+  i167 [label="$const_UB32"];
+  i167 -> i168 [label="n173"];
+
+  i168 [label="$concat2"];
+  i168 -> i165 [label="n174"];
+
+  i169 [label="$extract"];
+  i169 -> i172 [label="n175"];
+
+  i170 [label="$const_UB32"];
+  i170 -> i171 [label="n176"];
+
+  i171 [label="$eq"];
+  i171 -> i172 [label="n177"];
+
+  i172 [label="$mux2"];
+  i172 -> i30 [label="n178"];
+
+  i173 [label="$const_UB32"];
+  i173 -> i179 [label="n179"];
+
+  i174 [label="$const_UB32"];
+  i174 -> i175 [label="n180"];
+
+  i175 [label="$eq"];
+  i175 -> i178 [label="n181"];
+
+  i176 [label="$const_UB32"];
+  i176 -> i177 [label="n182"];
+
+  i177 [label="$eq"];
+  i177 -> i178 [label="n183"];
+
+  i178 [label="$and"];
+  i178 -> i179 [label="n184"];
+
+  i179 [label="$mux2"];
+  i179 -> i172 [label="n185"];
+
+  i180 [label="$const_UB32"];
+  i180 -> i179 [label="n186"];
+
+  i181 [label="$extract"];
+  i181 -> i204 [label="n187"];
+
+  i182 [label="$const_UB32"];
+  i182 -> i185 [label="n188"];
+
+  i183 [label="$const_UB32"];
+  i183 -> i184 [label="n189"];
+
+  i184 [label="$eq"];
+  i184 -> i185 [label="n190"];
+
+  i185 [label="$mux2"];
+  i185 -> i204 [label="n191"];
+
+  i186 [label="$const_UB32"];
+  i186 -> i185 [label="n192"];
+
+  i187 [label="$extract"];
+  i187 -> i189 [label="n193"];
+
+  i188 [label="$extract"];
+  i188 -> i189 [label="n194"];
+
+  i189 [label="$or"];
+  i189 -> i191 [label="n195"];
+
+  i190 [label="$extract"];
+  i190 -> i191 [label="n196"];
+
+  i191 [label="$xor"];
+  i191 -> i204 [label="n197"];
+
+  i192 [label="$mux2"];
+  i192 -> i35 [label="n198"];
+
+  i193 [label="$const_SB32"];
+  i193 -> i194 [label="n199"];
+
+  i194 [label="$add"];
+  i194 -> i6 [label="n200"];
+
+  i195 [label="$const_SB32"];
+  i195 -> i196 [label="n201"];
+
+  i196 [label="$add"];
+  i196 -> i198 [label="n202"];
+
+  i197 [label="$extract"];
+  i197 -> i198 [label="n203"];
+
+  i198 [label="$add"];
+  i198 -> i7 [label="n204"];
+
+  i199 [label="$mux2"];
+  i199 -> i5 [label="n205"];
+
+  i200 [label="$posedge"];
+  i200 -> i202 [label="n206"];
+
+  i202 [label="$idff"];
+  i202 -> i4 [label="n208"];
+
+  i204 [label="$concatn"];
+  i204 -> i37 [label="n210"];
+
+}
