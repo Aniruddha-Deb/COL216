@@ -1,0 +1,292 @@
+[2022-02-08 06:29:42 EST] precision -shell -file run.do -fileargs "design.vhd"  
+precision: Setting MGC_HOME to /usr/share/precision/Mgc_home ...
+precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Source)  -- 3.13.0-71-generic -- x86_64 
+//  Precision RTL Synthesis 64-bit 2021.1.0.4 (Production Release) Tue Jul 20 01:22:31 PDT 2021
+//  
+//  Copyright (c) Mentor Graphics Corporation, 1996-2021, All Rights Reserved.
+//             Portions copyright 1991-2008 Compuware Corporation
+//                       UNPUBLISHED, LICENSED SOFTWARE.
+//            CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+//          PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+//  
+//  Running on Linux runner@7c0446629d8a #114-Ubuntu SMP Tue Dec 1 02:34:22 UTC 2015 3.13.0-71-generic x86_64
+//  
+//  Start time Tue Feb  8 06:29:42 2022
+# -------------------------------------------------
+# Info: [9569]: Logging session transcript to file /home/runner/precision.log
+# Warning: [9508]: Results directory is not set. Use new_project, open_project, or set_results_dir.
+# Info: [9577]: Input directory: /home/runner
+# Info: [9572]: Moving session transcript to file /home/runner/precision.log
+# Info: [9558]: Created project /home/runner/project_1.psp in folder /home/runner.
+# Info: [9531]: Created directory: /home/runner/impl_1.
+# Info: [9557]: Created implementation impl_1 in project /home/runner/project_1.psp.
+# Info: [9578]: The Results Directory has been set to: /home/runner/impl_1/
+# Info: [9569]: Logging project transcript to file /home/runner/impl_1/precision.log
+# Info: [9569]: Logging suppressed messages transcript to file /home/runner/impl_1/precision.log.suppressed
+# Info: [9552]: Activated implementation impl_1 in project /home/runner/project_1.psp.
+# Info: [20026]: MultiProc: Precision will use a maximum of 8 logical processors.
+# Info: [15302]: Setting up the design to use synthesis library "xca7.syn"
+# Info: [585]: The global max fanout is currently set to 10000 for Xilinx - ARTIX-7.
+# Info: [15328]: Setting Part to: "7A100TCSG324".
+# Info: [15329]: Setting Process to: "1".
+# Info: [7513]: The default input to Vivado place and route has been set to "Verilog".
+# Info: [7512]: The place and route tool for current technology is Vivado.
+# Info: [3052]: Decompressing file : /usr/share/precision/Mgc_home/pkgs/psr/techlibs/xca7.syn in /home/runner/impl_1/synlib.
+# Info: [3022]: Reading file: /home/runner/impl_1/synlib/xca7.syn.
+# Info: [645]: Loading library initialization file /usr/share/precision/Mgc_home/pkgs/psr/userware/xilinx_rename.tcl
+# Info: [40000]: vhdlorder, Release 2021a.12
+# Info: [40000]: Files sorted successfully.
+# Info: [40000]: hdl-analyze, Release RTLC-Precision 2021a.12
+# Info: [42502]: Analyzing input file "/home/runner/design.vhd" ...
+# Warning: [15262]: Multiple tops found: prog_mem
+# Info:      data_mem
+# Info: [670]: Top module of the design is set to: data_mem.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [40000]: RTLC-Driver, Release RTLC-Precision 2021a.12
+# Info: [40000]: Last compiled on Jul  2 2021 08:23:33
+# Info: [44512]: Initializing...
+# Info: [44504]: Partitioning design ....
+# Info: [40000]: RTLCompiler, Release RTLC-Precision 2021a.12
+# Info: [40000]: Last compiled on Jul  2 2021 08:49:53
+# Info: [44512]: Initializing...
+# Info: [44522]: Root Module work.data_mem(data_mem_bvr): Pre-processing...
+# Info: [45251]: Built-in hardware memory core inferred for variable ': data_mem.ram depth = 64, width = 32'.
+# Info: [44523]: Root Module work.data_mem(data_mem_bvr): Compiling...
+# Info: [44842]: Compilation successfully completed.
+# Info: [44856]: Total lines of RTL compiled: 36.
+# Info: [44835]: Total CPU time for compilation: 0.0 secs.
+# Info: [44513]: Overall running time for compilation: 0.0 secs.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [15334]: Doing rtl optimizations.
+# Info: [671]: Finished compiling design.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [20013]: Precision will use 2 processor(s).
+# Info: [15002]: Optimizing design view:.work.data_mem.data_mem_bvr
+# Info: [15002]: Optimizing design view:.work.data_mem.data_mem_bvr
+# Info: [8010]: Gated clock transformations: Begin...
+# Info: [8010]: Gated clock transformations: End...
+# Info: [8053]: Added global buffer BUFGP for Port port:clk
+# Info: [3027]: Writing file: /home/runner/impl_1/data_mem.edf.
+# Info: [3027]: Writing file: /home/runner/impl_1/data_mem.xdc.
+# Info: -- Writing file /home/runner/impl_1/data_mem.tcl
+# Info: [3027]: Writing file: /home/runner/impl_1/data_mem.v.
+# Info: -- Writing file /home/runner/impl_1/data_mem.tcl
+# Info: [671]: Finished synthesizing design.
+# Info: [11019]: Total CPU time for synthesis: 0.9 s secs.
+# Info: [11020]: Overall running time for synthesis: 1.6 s secs.
+# Info: /home/runner/impl_1/precision_tech.sdc
+# Info: [3027]: Writing file: /home/runner/precision.v.
+# Info: [3027]: Writing file: /home/runner/precision.xdc.
+# Info: -- Writing file /home/runner/impl_1/data_mem.tcl
+# Info: Info, Command 'auto_write' finished successfully
+# Info: Num  File Type  Path
+# Info: ---------------------------------------------------------------
+# Info: 0               /home/runner/impl_1/data_mem_area.rep
+# Info: 1               /home/runner/impl_1/data_mem_con_rep.sdc
+# Info: 2               /home/runner/impl_1/data_mem_tech_con_rep.sdc
+# Info: 3               /home/runner/impl_1/data_mem_fsm.rep
+# Info: 4               /home/runner/impl_1/data_mem_dsp_modes.rep
+# Info: 5               /home/runner/impl_1/data_mem_ram_modes.rep
+# Info: 6               /home/runner/impl_1/data_mem_env.htm
+# Info: 7               /home/runner/impl_1/data_mem.edf
+# Info: 8               /home/runner/impl_1/data_mem.v
+# Info: 9               /home/runner/impl_1/data_mem.xdc
+# Info: 10              /home/runner/impl_1/data_mem.tcl
+# Info: ***************************************************************
+# Info: Device Utilization for 7A100TCSG324
+# Info: ***************************************************************
+# Info: Resource                          Used    Avail   Utilization
+# Info: ---------------------------------------------------------------
+# Info: IOs                               81      210      38.57%
+# Info: Global Buffers                    1       32        3.12%
+# Info: LUTs                              64      63400     0.10%
+# Info: CLB Slices                        16      15850     0.10%
+# Info: Dffs or Latches                   0       126800    0.00%
+# Info: Block RAMs                        0       135       0.00%
+# Info: Distributed RAMs
+# Info:    RAM64X1D                       32
+# Info: DSP48E1s                          0       240       0.00%
+# Info: ---------------------------------------------------------------
+# Info: ***************************************************************
+# Info: Library: work    Cell: data_mem    View: data_mem_bvr
+# Info: ***************************************************************
+# Info:  Number of ports :                           81
+# Info:  Number of nets :                           162
+# Info:  Number of instances :                       82
+# Info:  Number of references to this view :          0
+# Info: Total accumulated area :
+# Info:  Number of LUTs :                            64
+# Info:  Number of Primitive LUTs :                  64
+# Info:    Number of LUTs as Distributed RAM :       64
+# Info:  Number of accumulated instances :          113
+# Info: *****************************
+# Info:  IO Register Mapping Report
+# Info: *****************************
+# Info: Design: work.data_mem.data_mem_bvr
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | Port           | Direction |   INFF   |  OUTFF   |  TRIFF   |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | r_addr(5)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | r_addr(4)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | r_addr(3)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | r_addr(2)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | r_addr(1)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | r_addr(0)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_addr(5)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_addr(4)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_addr(3)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_addr(2)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_addr(1)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_addr(0)      | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_en(3)        | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_en(2)        | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_en(1)        | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | w_en(0)        | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(31)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(30)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(29)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(28)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(27)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(26)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(25)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(24)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(23)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(22)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(21)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(20)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(19)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(18)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(17)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(16)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(15)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(14)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(13)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(12)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(11)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(10)    | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(9)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(8)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(7)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(6)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(5)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(4)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(3)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(2)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(1)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | data_in(0)     | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | clk            | Input     |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(31)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(30)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(29)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(28)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(27)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(26)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(25)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(24)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(23)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(22)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(21)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(20)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(19)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(18)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(17)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(16)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(15)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(14)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(13)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(12)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(11)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(10)     | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(9)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(8)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(7)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(6)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(5)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(4)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(3)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(2)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(1)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: | output(0)      | Output    |          |          |          |
+# Info: +----------------+-----------+----------+----------+----------+
+# Info: Total registers mapped: 0
+# Info: [12022]: Design has no timing constraint and no timing information.
