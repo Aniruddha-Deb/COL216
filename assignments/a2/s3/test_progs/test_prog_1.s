@@ -1,6 +1,6 @@
 @ as given in the assignment
     .text
-    mov r0, #10
+    mov r0, #40
     mov r1, #5
     str r1, [r0]
     add r1, r1, #2
@@ -11,7 +11,7 @@
     .end
 
 @
-@ 0 => X"E3A0000A",
+@ 0 => X"E3A00028",
 @ 1 => X"E3A01005",
 @ 2 => X"E5801000",
 @ 3 => X"E2811002",

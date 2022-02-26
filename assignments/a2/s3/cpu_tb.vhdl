@@ -6,7 +6,7 @@ end cpu_tb;
 
 architecture cpu_tb_arc of cpu_tb is
     signal clock: std_logic := '0';
-    constant clock_period: time := 10 ns;
+    constant clock_period: time := 2 ns;
 begin
     uut: entity work.cpu port map (clock);
 

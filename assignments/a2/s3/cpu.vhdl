@@ -1,41 +1,5 @@
 library ieee;
 use ieee.std_logic_1164.all;
-
-entity cpsr_reg is
-    port (
-        cpsr_in: in std_logic_vector(3 downto 0);
-        cpsr_out: out std_logic_vector(3 downto 0);
-        update: in std_logic;
-        clock : in std_logic
-    );
-end cpsr_reg;
-
-architecture cpsr_reg_arc of cpsr_reg is
-begin
-    cpsr_out <= cpsr_in when ((rising_edge(clock)) and (update = '1'));
-end cpsr_reg_arc;
-
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity predicator is
-    port (
-        condition: in std_logic_vector(3 downto 0);
-        flags: in std_logic_vector(3 downto 0);
-        p: out std_logic
-    );
-end predicator;
-
-architecture predicator_arc of predicator is
-begin
-    p <= '1' when (condition = "0000" and flags(1) = '1') else
-         '1' when (condition = "0001" and flags(1) = '0') else
-         '1' when condition = "1110" else
-         '0';
-end predicator_arc;
-
-library ieee;
-use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.MyTypes.all;
 
@@ -141,8 +105,81 @@ end cpu;
 --end cpu_singlecycle_arch;
 
 
---architecture cpu_multicycle_arch of cpu is
---begin
---    cpu_multicycle_dataflow: entity work.cpu_multicycle_dataflow port map (.....)
---    cpu_multicycle_control: entity work.cpu_multicycle_control port map (.....)
---end cpu_multicycle_arch;
+architecture cpu_multicycle_arch of cpu is
+
+    signal ctrl_alu_opcode : std_logic_vector(3 downto 0);
+    signal ctrl_alu_c_in : std_logic;
+    signal ctrl_regfile_w_en : std_logic;
+    signal ctrl_regfile_w_data : std_logic;
+    signal ctrl_regfile_r_addr_2 : std_logic;
+    signal ctrl_mem_w_en : std_logic_vector(3 downto 0);
+    signal ctrl_ir_write : std_logic;
+    signal ctrl_dr_write : std_logic;
+    signal ctrl_res_write : std_logic;
+    signal ctrl_pc_write : std_logic;
+    signal ctrl_a_write : std_logic;
+    signal ctrl_b_write : std_logic;
+    signal ctrl_flag_set : std_logic;
+    signal ctrl_predict_cond : std_logic_vector(3 downto 0);
+    signal ctrl_mem_ad_mux : std_logic;
+    signal ctrl_reg_wd_mux : std_logic;
+    signal ctrl_alu_op_mux : std_logic;
+    signal ctrl_alu_shift_op_mux : std_logic_vector(1 downto 0);
+
+    signal instr_copy: std_logic_vector(31 downto 0);
+    signal prediction: std_logic;
+    signal flags: std_logic_vector(3 downto 0);
+
+begin
+    cpu_multicycle_datapath: entity work.cpu_multicycle_datapath port map (
+        clock,
+
+        ctrl_alu_opcode,
+        ctrl_alu_c_in,
+        ctrl_regfile_w_en,
+        ctrl_regfile_w_data,
+        ctrl_regfile_r_addr_2,
+        ctrl_mem_w_en,
+        ctrl_ir_write,
+        ctrl_dr_write,
+        ctrl_res_write,
+        ctrl_pc_write,
+        ctrl_a_write,
+        ctrl_b_write,
+        ctrl_flag_set,
+        ctrl_predict_cond,
+        ctrl_mem_ad_mux,
+        ctrl_reg_wd_mux,
+        ctrl_alu_op_mux,
+        ctrl_alu_shift_op_mux,
+
+        instr_copy,
+        prediction,
+        flags);
+
+    cpu_multicycle_controller: entity work.cpu_multicycle_controller port map (
+        clock,
+
+        ctrl_alu_opcode,
+        ctrl_alu_c_in,
+        ctrl_regfile_w_en,
+        ctrl_regfile_w_data,
+        ctrl_regfile_r_addr_2,
+        ctrl_mem_w_en,
+        ctrl_ir_write,
+        ctrl_dr_write,
+        ctrl_res_write,
+        ctrl_pc_write,
+        ctrl_a_write,
+        ctrl_b_write,
+        ctrl_flag_set,
+        ctrl_predict_cond,
+        ctrl_mem_ad_mux,
+        ctrl_reg_wd_mux,
+        ctrl_alu_op_mux,
+        ctrl_alu_shift_op_mux,
+
+        instr_copy,
+        prediction,
+        flags);
+end cpu_multicycle_arch;

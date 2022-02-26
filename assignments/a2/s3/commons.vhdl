@@ -3,10 +3,10 @@ use ieee.std_logic_1164.all;
 use work.MyTypes.all;
 
 entity reg is
-    generic (size : integer := 32 );
+    generic (size : integer := 32);
     port (
         data_in  : in std_logic_vector((size-1) downto 0);
-        data_out : out std_logic_vector((size-1) downto 0);
+        data_out : out std_logic_vector((size-1) downto 0) := (others => '0');
         clock    : in std_logic;
         w_en     : in std_logic
     );

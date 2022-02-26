@@ -110,37 +110,38 @@ begin
                 '0' & (op or shift_op) when opcode = "1100" else 
                 '0' & shift_op when opcode = "1101" else 
                 '0' & (op and (not shift_op)) when opcode = "1110" else 
-                '0' & (not shift_op) when opcode = "1111";
+                '0' & (not shift_op) when opcode = "1111" else
+                '0' & x"00000000";
 
     ans <= temp_ans(31 downto 0);
     flags(cpsr_N) <= temp_ans(31);
-    flags(cpsr_Z) <= '1' when temp_ans = x"00000000" else '0';
+    flags(cpsr_Z) <= '1' when temp_ans(31 downto 0) = x"00000000" else '0';
     flags(cpsr_C) <= temp_ans(32);
     flags(cpsr_V) <= (shift_op(31) and op(31) and (not temp_ans(31))) or ((not shift_op(31)) and (not op(31)) and temp_ans(31));
 
 end alu_bvr;
 
-architecture alu_df of alu is
-    signal carries: std_logic_vector(32 downto 0);
-    signal x, y, z, c_zero: std_logic;
-    signal operation: std_logic_vector(1 downto 0);
-    signal ans_temp: std_logic_vector(31 downto 0);
-begin
+--architecture alu_df of alu is
+--    signal carries: std_logic_vector(32 downto 0);
+--    signal x, y, z, c_zero: std_logic;
+--    signal operation: std_logic_vector(1 downto 0);
+--    signal ans_temp: std_logic_vector(31 downto 0);
+--begin
 
-    alu_control: entity work.comb_alu_ctrl port map (opcode, carry_in, x, y, z, carries(0), operation);
+--    alu_control: entity work.comb_alu_ctrl port map (opcode, carry_in, x, y, z, carries(0), operation);
 
-    gen_cells : for i in 0 to 31 generate
-        alu_cell_x : entity work.alu_cell port map (x, y, z, carries(i), op(i), shift_op(i), carries(i+1), ans_temp(i), operation);
-    end generate gen_cells;
+--    gen_cells : for i in 0 to 31 generate
+--        alu_cell_x : entity work.alu_cell port map (x, y, z, carries(i), op(i), shift_op(i), carries(i+1), ans_temp(i), operation);
+--    end generate gen_cells;
 
-    flags(cpsr_N) <= ans_temp(31);
-    flags(cpsr_Z) <= '1' when ans_temp = x"00000000" else '0';
-    flags(cpsr_C) <= carries(32);
-    flags(cpsr_V) <= carries(32) xor carries(31);
+--    flags(cpsr_N) <= ans_temp(31);
+--    flags(cpsr_Z) <= '1' when ans_temp = x"00000000" else '0';
+--    flags(cpsr_C) <= carries(32);
+--    flags(cpsr_V) <= carries(32) xor carries(31);
 
-    ans <= ans_temp;
+--    ans <= ans_temp;
 
-end alu_df;
+--end alu_df;
 
 configuration alu_conf of alu is
     for alu_bvr end for;

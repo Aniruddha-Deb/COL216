@@ -1,63 +1,60 @@
 v 4
-file . "cpu_multicycle.vhdl" "23468e1ad65aa920870ac74f0d8d9888dfe90ba9" "20220223131702.423":
-  entity cpu_multicycle_dataflow at 1( 0) + 0 on 428;
-  architecture cpu_multicycle_dataflow_arc of cpu_multicycle_dataflow at 34( 1092) + 0 on 429;
-file . "commons_tb.vhdl" "4ecced90af44a67d2ab8b9da9e33dd6826603900" "20220222173343.724":
-  entity mux_tb at 1( 0) + 0 on 360;
-  architecture mux_tb_arc of mux_tb at 7( 74) + 0 on 361;
-file . "cpu_tb.vhdl" "bd134571a330ec74c029205b129ebf0d81546ef3" "20220219164138.736":
-  entity cpu_tb at 1( 0) + 0 on 352;
-  architecture cpu_tb_arc of cpu_tb at 7( 74) + 0 on 353;
-file . "decoder.vhdl" "a5043c769e8433cf436f7c679646f0cae1753b41" "20220219054029.569":
-  entity decoder at 3( 22) + 0 on 110;
-  architecture behavioral of decoder at 20( 422) + 0 on 111;
-file . "alu_tb.vhdl" "28fec77fab4f02ce581bd8aece47aeb05a62383e" "20220223074005.944":
-  entity alu_tb at 1( 0) + 0 on 395;
-  architecture alu_tb_arc of alu_tb at 7( 74) + 0 on 396;
+file . "predicator.vhdl" "7807069c528ad740b82c736b8e0c3c7eedd10642" "20220225091442.715":
+  entity predicator at 1( 0) + 0 on 852;
+  architecture predicator_arc of predicator at 13( 247) + 0 on 853;
+file . "commons.vhdl" "8041d53bc3eca58bf39a9d76b3f3cc89ab715b61" "20220224104431.228":
+  entity reg at 1( 0) + 0 on 504;
+  architecture reg_arc of reg at 15( 347) + 0 on 505;
+  entity mux at 25( 552) + 0 on 506;
+  architecture mux_arc of mux at 42( 945) + 0 on 507;
+  entity mux_2 at 47( 1044) + 0 on 508;
+  architecture mux_2_arc of mux_2 at 64( 1422) + 0 on 509;
+  entity sign_extender at 69( 1524) + 0 on 510;
+  architecture sign_extender_arc of sign_extender at 82( 1863) + 0 on 511;
+file . "cpu.vhdl" "f7a110435ddb9195b0b9b3e3293b8aa608280712" "20220225104002.162":
+  entity cpu at 1( 0) + 0 on 954;
+  architecture cpu_multicycle_arch of cpu at 108( 4665) + 0 on 955;
+file . "mytypes.vhdl" "57d4158102cdc59bebbb27c1f9fb7f729395f22a" "20220223112128.696":
+  package mytypes at 1( 0) + 0 on 397;
+  package body mytypes at 27( 934) + 0 on 398;
+file . "alu.vhdl" "3a1b47822cfe44c94372e05ae2cfbc5c728eaf56" "20220225091425.908":
+  entity full_adder at 1( 0) + 0 on 843;
+  architecture full_adder_arc of full_adder at 15( 263) + 0 on 844;
+  entity comb_alu_ctrl at 21( 418) + 0 on 845;
+  architecture comb_alu_ctrl_arc of comb_alu_ctrl at 34( 712) + 0 on 846;
+  entity alu_cell at 51( 1372) + 0 on 847;
+  architecture alu_cell_arc of alu_cell at 63( 1614) + 0 on 848;
+  entity alu at 79( 2065) + 0 on 849;
+  architecture alu_bvr of alu at 95( 2476) + 0 on 850;
+  configuration alu_conf at 146( 5268) + 0 on 851;
+file . "mem.vhdl" "a5e781dae9263c8ad8d79301a90f7cbc8d134b1b" "20220225103950.377":
+  entity memory at 1( 0) + 0 on 948;
+  architecture memory_arc of memory at 20( 415) + 0 on 949;
+file . "regfile.vhdl" "4cb6a9729b0c48d6a7713d59d2f91689804562d1" "20220219085217.332":
+  entity regfile at 10( 192) + 0 on 182;
+  architecture regfile_bvr of regfile at 27( 669) + 0 on 183;
+file . "regfile_tb.vhdl" "e09c4ff44fbdf54282edd640960f92bbb09573df" "20220208082723.126":
+  entity regfile_tb at 1( 0) + 0 on 19;
+  architecture regfile_tb_bvr of regfile_tb at 7( 82) + 0 on 20;
 file . "mem_tb.vhdl" "0be9e20182f32c982c2f3bc5b7e77cfdea08fcd2" "20220208085445.230":
   entity prog_mem_tb at 1( 0) + 0 on 54;
   architecture prog_mem_tb_bvr of prog_mem_tb at 8( 110) + 0 on 55;
   entity data_mem_tb at 28( 519) + 0 on 56;
   architecture data_mem_tb_bvr of data_mem_tb at 35( 629) + 0 on 57;
-file . "regfile_tb.vhdl" "e09c4ff44fbdf54282edd640960f92bbb09573df" "20220208082723.126":
-  entity regfile_tb at 1( 0) + 0 on 19;
-  architecture regfile_tb_bvr of regfile_tb at 7( 82) + 0 on 20;
-file . "regfile.vhdl" "4cb6a9729b0c48d6a7713d59d2f91689804562d1" "20220219085217.332":
-  entity regfile at 10( 192) + 0 on 182;
-  architecture regfile_bvr of regfile at 27( 669) + 0 on 183;
-file . "mem.vhdl" "a47dc7eece64027e572764d0719621a3a8227d88" "20220223112448.595":
-  entity prog_mem at 1( 0) + 0 on 407;
-  architecture prog_mem_df of prog_mem at 12( 218) + 0 on 408;
-  entity data_mem at 33( 652) + 0 on 409;
-  architecture data_mem_bvr of data_mem at 48( 1088) + 0 on 410;
-  entity memory at 77( 1986) + 0 on 411;
-  architecture memory_arc of memory at 92( 2331) + 0 on 412;
-file . "alu.vhdl" "7d4f1e7365e2269ec20f4ec700a36b4b0386ea5f" "20220223112706.170":
-  entity full_adder at 1( 0) + 0 on 413;
-  architecture full_adder_arc of full_adder at 15( 263) + 0 on 414;
-  entity comb_alu_ctrl at 21( 418) + 0 on 415;
-  architecture comb_alu_ctrl_arc of comb_alu_ctrl at 34( 712) + 0 on 416;
-  entity alu_cell at 51( 1372) + 0 on 417;
-  architecture alu_cell_arc of alu_cell at 63( 1614) + 0 on 418;
-  entity alu at 79( 2065) + 0 on 419;
-  architecture alu_bvr of alu at 95( 2476) + 0 on 420;
-  architecture alu_df of alu at 123( 4427) + 0 on 421;
-  configuration alu_conf at 145( 5184) + 0 on 422;
-file . "mytypes.vhdl" "57d4158102cdc59bebbb27c1f9fb7f729395f22a" "20220223112128.696":
-  package mytypes at 1( 0) + 0 on 397;
-  package body mytypes at 27( 934) + 0 on 398;
-file . "cpu.vhdl" "236df891256d640cff3a0421ad5c26a239a34621" "20220223112751.864":
-  entity cpsr_reg at 1( 0) + 0 on 423;
-  architecture cpsr_reg_arc of cpsr_reg at 13( 257) + 0 on 424;
-  entity predicator at 18( 395) + 0 on 425;
-  architecture predicator_arc of predicator at 29( 620) + 0 on 426;
-  entity cpu at 37( 874) + 0 on 427;
-file . "commons.vhdl" "475c351ca4b46287a26ab20472822273b66bbde2" "20220223112132.561":
-  entity reg at 1( 0) + 0 on 399;
-  architecture reg_arc of reg at 15( 329) + 0 on 400;
-  entity mux at 25( 534) + 0 on 401;
-  architecture mux_arc of mux at 42( 927) + 0 on 402;
-  entity mux_2 at 47( 1026) + 0 on 403;
-  architecture mux_2_arc of mux_2 at 64( 1404) + 0 on 404;
-  entity sign_extender at 69( 1506) + 0 on 405;
-  architecture sign_extender_arc of sign_extender at 82( 1845) + 0 on 406;
+file . "alu_tb.vhdl" "28fec77fab4f02ce581bd8aece47aeb05a62383e" "20220223074005.944":
+  entity alu_tb at 1( 0) + 0 on 395;
+  architecture alu_tb_arc of alu_tb at 7( 74) + 0 on 396;
+file . "decoder.vhdl" "a5043c769e8433cf436f7c679646f0cae1753b41" "20220219054029.569":
+  entity decoder at 3( 22) + 0 on 110;
+  architecture behavioral of decoder at 20( 422) + 0 on 111;
+file . "cpu_tb.vhdl" "060e1bc11ac3457a76bf6f8393d995b4881251dc" "20220225101729.053":
+  entity cpu_tb at 1( 0) + 0 on 946;
+  architecture cpu_tb_arc of cpu_tb at 7( 74) + 0 on 947;
+file . "commons_tb.vhdl" "4ecced90af44a67d2ab8b9da9e33dd6826603900" "20220222173343.724":
+  entity mux_tb at 1( 0) + 0 on 360;
+  architecture mux_tb_arc of mux_tb at 7( 74) + 0 on 361;
+file . "cpu_multicycle.vhdl" "c53ce6b0463b1d996e172e5ddd6ae686f3331a1f" "20220225103958.531":
+  entity cpu_multicycle_datapath at 1( 0) + 0 on 950;
+  architecture cpu_multicycle_datapath_arc of cpu_multicycle_datapath at 35( 1141) + 0 on 951;
+  entity cpu_multicycle_controller at 110( 4280) + 0 on 952;
+  architecture cpu_multicycle_controller_arc of cpu_multicycle_controller at 144( 5449) + 0 on 953;

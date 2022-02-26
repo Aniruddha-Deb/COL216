@@ -27,14 +27,16 @@ entity cpu_multicycle_datapath is
         ctrl_alu_shift_op_mux : in std_logic_vector(1 downto 0);
 
         instr_copy: out std_logic_vector(31 downto 0);
-        prediction: out std_logic
+        prediction: out std_logic;
+        flags: out std_logic_vector(3 downto 0)
     );
 end cpu_multicycle_datapath;
 
 architecture cpu_multicycle_datapath_arc of cpu_multicycle_datapath is
 
-    signal pc_in: word; 
-    signal pc_out: word;
+    signal pc_in: word := x"00000000"; 
+    signal pc_out: word := x"00000000";
+    signal pc_shift_out: word;
 
     signal mem_ad: word;
     signal mem_wd: word;
@@ -52,8 +54,9 @@ architecture cpu_multicycle_datapath_arc of cpu_multicycle_datapath is
 
     signal alu_shift_op: word;
     signal alu_op: word;
-    signal alu_ans: word;
+    signal alu_ans: word := x"00000000";
     signal alu_flags: std_logic_vector(3 downto 0);
+    signal branch_addr_shift: word;
 
     signal imm_op_ext: word;
     signal branch_ext: word;
@@ -64,6 +67,7 @@ architecture cpu_multicycle_datapath_arc of cpu_multicycle_datapath is
     signal instruction: word;
 
 begin
+    pc_in <= alu_ans(29 downto 0)&"00";
     pc: entity work.reg port map (pc_in, pc_out, clock, ctrl_pc_write);
     
     mem_address_mux: entity work.mux_2 port map (pc_out, res_out, mem_ad, ctrl_mem_ad_mux);
@@ -82,21 +86,24 @@ begin
     A: entity work.reg port map (regfile_out_1, A_out, clock, ctrl_a_write);
     B: entity work.reg port map (regfile_out_2, mem_wd, clock, ctrl_b_write);
 
-    op_mux: entity work.mux_2 port map (pc_out, A_out, alu_op, ctrl_alu_op_mux);
+    pc_shift_out <= "00"&pc_out(31 downto 2);
+    op_mux: entity work.mux_2 port map (pc_shift_out, A_out, alu_op, ctrl_alu_op_mux);
     imm_extender: entity work.sign_extender generic map (12, 32) port map (instruction(11 downto 0), imm_op_ext);
     branch_extender: entity work.sign_extender generic map (24, 32) port map (instruction(23 downto 0), branch_ext);
 
-    shift_op_mux: entity work.mux port map (input(0) => mem_wd, input(1) => x"00000004", input(2) => imm_op_ext, input(3) => branch_ext,
+    --branch_addr_shift <= "00"&branch_ext(31 downto 2);
+    shift_op_mux: entity work.mux port map (input(0) => mem_wd, input(1) => x"00000000", input(2) => imm_op_ext, input(3) => branch_ext,
         output => alu_shift_op, sel => ctrl_alu_shift_op_mux);
 
     ALU: entity work.alu port map (alu_shift_op, alu_op, ctrl_alu_c_in, ctrl_alu_opcode, alu_ans, alu_flags);
 
-    flags: entity work.reg generic map (4) port map (alu_flags, flag_reg_out, clock, ctrl_flag_set);
+    flag_reg: entity work.reg generic map (4) port map (alu_flags, flag_reg_out, clock, ctrl_flag_set);
     predicator: entity work.predicator port map (ctrl_predict_cond, flag_reg_out, prediction);
 
     result: entity work.reg port map (alu_ans, res_out, clock, ctrl_res_write);
 
     instr_copy <= instruction;
+    flags <= flag_reg_out;
 
 end cpu_multicycle_datapath_arc;
 
@@ -128,48 +135,265 @@ entity cpu_multicycle_controller is
         ctrl_alu_op_mux : out std_logic;
         ctrl_alu_shift_op_mux : out std_logic_vector(1 downto 0);
 
-        instr_copy: in std_logic_vector(31 downto 0);
-        prediction: in std_logic        
+        instruction: in std_logic_vector(31 downto 0);
+        prediction: in std_logic;
+        flags: in std_logic_vector(3 downto 0)
     );
 end cpu_multicycle_controller;
 
 architecture cpu_multicycle_controller_arc of cpu_multicycle_controller is
 
     type fsm_state is (fetch, decode, execute_dp, writeback_dp, execute_dt, 
-        writeback_dt_str, writeback_dt_ldr, execute_b);
+        writeback_dt_str, load_dt_ldr, writeback_dt_ldr, execute_b);
 
     signal curr_state: fsm_state := fetch;
 begin
 
+    state_change: process(curr_state, instruction)
+    begin
+        case curr_state is
+        when fetch => 
+            ctrl_alu_opcode <= "0101";
+            ctrl_alu_c_in <= '1';
+            ctrl_regfile_w_en <= '0';
+            ctrl_regfile_w_data <= '0';
+            ctrl_regfile_r_addr_2 <= '0';
+            ctrl_mem_w_en <= "0000";
+            ctrl_ir_write <= '1';
+            ctrl_dr_write <= '0';
+            ctrl_res_write <= '0';
+            ctrl_pc_write <= '1';
+            ctrl_a_write <= '0';
+            ctrl_b_write <= '0';
+            ctrl_flag_set <= '0';
+            ctrl_predict_cond <= "0000";
+            ctrl_mem_ad_mux <= '0';
+            ctrl_reg_wd_mux <= '0';
+            ctrl_alu_op_mux <= '0';
+            ctrl_alu_shift_op_mux <= "01";
+        when decode => 
+            ctrl_alu_opcode <= "0000";
+            ctrl_alu_c_in <= '0';
+            ctrl_regfile_w_en <= '0';
+            ctrl_regfile_w_data <= '0';
+            ctrl_mem_w_en <= "0000";
+            ctrl_ir_write <= '0';
+            ctrl_dr_write <= '0';
+            ctrl_res_write <= '0';
+            ctrl_pc_write <= '0';
+            ctrl_a_write <= '1';
+            ctrl_b_write <= '1';
+            ctrl_flag_set <= '0';
+            ctrl_predict_cond <= instruction(31 downto 28);
+            ctrl_mem_ad_mux <= '0';
+            ctrl_reg_wd_mux <= '0';
+            ctrl_alu_op_mux <= '0';
+            ctrl_alu_shift_op_mux <= "00";
+
+            if instruction(27 downto 26) = "00" then
+                ctrl_regfile_r_addr_2 <= '0';
+            elsif instruction(27 downto 26) = "01" then
+                ctrl_regfile_r_addr_2 <= '1';
+            else 
+                ctrl_regfile_r_addr_2 <= '0';
+            end if;                    
+        when execute_dp =>
+            ctrl_alu_opcode <= instruction(24 downto 21);
+            ctrl_alu_c_in <= flags(cpsr_C);
+            ctrl_regfile_w_en <= '0';
+            ctrl_regfile_w_data <= '0';
+            ctrl_regfile_r_addr_2 <= '0';
+            ctrl_mem_w_en <= "0000";
+            ctrl_ir_write <= '0';
+            ctrl_dr_write <= '0';
+            ctrl_res_write <= '1';
+            ctrl_pc_write <= '0';
+            ctrl_a_write <= '0';
+            ctrl_b_write <= '0';
+            ctrl_flag_set <= instruction(20);
+            ctrl_predict_cond <= instruction(31 downto 28);
+            ctrl_mem_ad_mux <= '0';
+            ctrl_reg_wd_mux <= '0';
+            ctrl_alu_op_mux <= '1';
+
+            if instruction(25) = '1' then
+                ctrl_alu_shift_op_mux <= "10";
+            else
+                ctrl_alu_shift_op_mux <= "00";
+            end if;
+
+        when writeback_dp =>
+            ctrl_alu_opcode <= "0000";
+            ctrl_alu_c_in <= '0';
+            if (instruction(24) and (not instruction(23))) = '1' then
+                ctrl_regfile_w_en <= '0';
+            else
+                ctrl_regfile_w_en <= '1';
+            end if;
+            ctrl_regfile_w_data <= '0';
+            ctrl_regfile_r_addr_2 <= '0';
+            ctrl_mem_w_en <= "0000";
+            ctrl_ir_write <= '0';
+            ctrl_dr_write <= '0';
+            ctrl_res_write <= '0';
+            ctrl_pc_write <= '0';
+            ctrl_a_write <= '0';
+            ctrl_b_write <= '0';
+            ctrl_flag_set <= '0';
+            ctrl_predict_cond <= instruction(31 downto 28);
+            ctrl_mem_ad_mux <= '0';
+            ctrl_reg_wd_mux <= '0';
+            ctrl_alu_op_mux <= '0';
+            ctrl_alu_shift_op_mux <= "00";
+
+        when execute_dt =>
+            if instruction(23) = '1' then
+                ctrl_alu_opcode <= "0100";
+            else
+                ctrl_alu_opcode <= "0010";
+            end if;
+            ctrl_alu_c_in <= '0';
+            ctrl_regfile_w_en <= '0';
+            ctrl_regfile_w_data <= '0';
+            ctrl_regfile_r_addr_2 <= '0';
+            ctrl_mem_w_en <= "0000";
+            ctrl_ir_write <= '0';
+            ctrl_dr_write <= '0';
+            ctrl_res_write <= '1';
+            ctrl_pc_write <= '0';
+            ctrl_a_write <= '0';
+            ctrl_b_write <= '0';
+            ctrl_flag_set <= '0';
+            ctrl_predict_cond <= instruction(31 downto 28);
+            ctrl_mem_ad_mux <= '0';
+            ctrl_reg_wd_mux <= '0';
+            ctrl_alu_op_mux <= '1';
+            ctrl_alu_shift_op_mux <= "10";
+
+        when writeback_dt_str =>
+            ctrl_alu_opcode <= "0000";
+            ctrl_alu_c_in <= '0';
+            ctrl_regfile_w_en <= '0';
+            ctrl_regfile_w_data <= '0';
+            ctrl_regfile_r_addr_2 <= '1';
+            ctrl_mem_w_en <= "1111";
+            ctrl_ir_write <= '0';
+            ctrl_dr_write <= '0';
+            ctrl_res_write <= '0';
+            ctrl_pc_write <= '0';
+            ctrl_a_write <= '0';
+            ctrl_b_write <= '0';
+            ctrl_flag_set <= '0';
+            ctrl_predict_cond <= instruction(31 downto 28);
+            ctrl_mem_ad_mux <= '1';
+            ctrl_reg_wd_mux <= '0';
+            ctrl_alu_op_mux <= '0';
+            ctrl_alu_shift_op_mux <= "00";
+
+        when load_dt_ldr =>
+            ctrl_alu_opcode <= "0000";
+            ctrl_alu_c_in <= '0';
+            ctrl_regfile_w_en <= '0';
+            ctrl_regfile_w_data <= '0';
+            ctrl_regfile_r_addr_2 <= '0';
+            ctrl_mem_w_en <= "0000";
+            ctrl_ir_write <= '0';
+            ctrl_dr_write <= '1';
+            ctrl_res_write <= '0';
+            ctrl_pc_write <= '0';
+            ctrl_a_write <= '0';
+            ctrl_b_write <= '0';
+            ctrl_flag_set <= '0';
+            ctrl_predict_cond <= instruction(31 downto 28);
+            ctrl_mem_ad_mux <= '1';
+            ctrl_reg_wd_mux <= '0';
+            ctrl_alu_op_mux <= '0';
+            ctrl_alu_shift_op_mux <= "00";
+
+        when writeback_dt_ldr =>
+            ctrl_alu_opcode <= "0000";
+            ctrl_alu_c_in <= '0';
+            ctrl_regfile_w_en <= '1';
+            ctrl_regfile_w_data <= '1';
+            ctrl_regfile_r_addr_2 <= '0';
+            ctrl_mem_w_en <= "0000";
+            ctrl_ir_write <= '0';
+            ctrl_dr_write <= '0';
+            ctrl_res_write <= '0';
+            ctrl_pc_write <= '0';
+            ctrl_a_write <= '0';
+            ctrl_b_write <= '0';
+            ctrl_flag_set <= '0';
+            ctrl_predict_cond <= instruction(31 downto 28);
+            ctrl_mem_ad_mux <= '0';
+            ctrl_reg_wd_mux <= '0';
+            ctrl_alu_op_mux <= '0';
+            ctrl_alu_shift_op_mux <= "00";
+
+        when execute_b => 
+            ctrl_alu_opcode <= "0101";
+            ctrl_alu_c_in <= '1';
+            ctrl_regfile_w_en <= '0';
+            ctrl_regfile_w_data <= '0';
+            ctrl_regfile_r_addr_2 <= '0';
+            ctrl_mem_w_en <= "0000";
+            ctrl_ir_write <= '0';
+            ctrl_dr_write <= '0';
+            ctrl_res_write <= '0';
+            if prediction = '1' then
+                ctrl_pc_write <= '1';
+            else 
+                ctrl_pc_write <= '0';
+            end if;
+            ctrl_a_write <= '0';
+            ctrl_b_write <= '0';
+            ctrl_flag_set <= '0';
+            ctrl_predict_cond <= instruction(31 downto 28);
+            ctrl_mem_ad_mux <= '0';
+            ctrl_reg_wd_mux <= '0';
+            ctrl_alu_op_mux <= '0';
+            ctrl_alu_shift_op_mux <= "11";
+        end case;
+    end process state_change;
+
     transition: process(clock)
+        variable branch_calc: word;
     begin
 
         -- while transitioning to a state, the FSM needs to set the signals to 
         -- that of the next state, rather than that of the current state 
         -- actually, this doesn't matter much, eh.
 
-        -- should I define the values of _all_ the signals in each case? there 
-        -- are like 20 of them. Hmmm....
         if rising_edge(clock) then
-
-            case fsm_state is
+            case curr_state is
             when fetch => 
-                ctrl_pc_write <= '1';
-                ctrl_mem_ad_mux <= '0';
-                ctrl_ir_write <= '1';
-                ctrl_alu_op_mux <= '0';
-                ctrl_alu_shift_op_mux <= "01";
-                ctrl_alu_opcode <= "0100"; -- add. Hmm, should really make this an enum
-                ctrl_c_in <= '0';
-                ctrl_res_write <= '0';
                 curr_state <= decode;
             when decode => 
-                ctrl_a_write <= '1';
-                ctrl_b_write <= '1';
-                if instruction()
-
-
-
+                if instruction(27 downto 26) = "00" then
+                    curr_state <= execute_dp;
+                elsif instruction(27 downto 26) = "01" then
+                    curr_state <= execute_dt;
+                else 
+                    curr_state <= execute_b;
+                end if;                    
+            when execute_dp =>
+                curr_state <= writeback_dp;
+            when writeback_dp =>
+                curr_state <= fetch;
+            when execute_dt =>
+                if instruction(20) = '1' then 
+                    curr_state <= load_dt_ldr;
+                else 
+                    curr_state <= writeback_dt_str;
+                end if;
+            when writeback_dt_str =>
+                curr_state <= fetch;
+            when load_dt_ldr =>
+                curr_state <= writeback_dt_ldr;
+            when writeback_dt_ldr =>
+                curr_state <= fetch;
+            when execute_b => 
+                curr_state <= fetch;
             end case;
         end if;
     end process transition;
