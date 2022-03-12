@@ -1,0 +1,276 @@
+precision: Setting MGC_HOME to /usr/share/precision/Mgc_home ...
+precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Source)  -- 5.4.0-100-generic -- x86_64 
+//  Precision RTL Synthesis 64-bit 2021.1.0.4 (Production Release) Tue Jul 20 01:22:31 PDT 2021
+//  
+//  Copyright (c) Mentor Graphics Corporation, 1996-2021, All Rights Reserved.
+//             Portions copyright 1991-2008 Compuware Corporation
+//                       UNPUBLISHED, LICENSED SOFTWARE.
+//            CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+//          PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+//  
+//  Running on Linux runner@15ac3020500d #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 5.4.0-100-generic x86_64
+//  
+//  Start time Sat Mar 12 08:28:41 2022
+# -------------------------------------------------
+# Info: [9569]: Logging session transcript to file /home/runner/precision.log
+# Warning: [9508]: Results directory is not set. Use new_project, open_project, or set_results_dir.
+# Info: [9577]: Input directory: /home/runner
+# Info: [9572]: Moving session transcript to file /home/runner/precision.log
+# Info: [9558]: Created project /home/runner/project_1.psp in folder /home/runner.
+# Info: [9531]: Created directory: /home/runner/impl_1.
+# Info: [9557]: Created implementation impl_1 in project /home/runner/project_1.psp.
+# Info: [9578]: The Results Directory has been set to: /home/runner/impl_1/
+# Info: [9569]: Logging project transcript to file /home/runner/impl_1/precision.log
+# Info: [9569]: Logging suppressed messages transcript to file /home/runner/impl_1/precision.log.suppressed
+# Info: [9552]: Activated implementation impl_1 in project /home/runner/project_1.psp.
+# Info: [20026]: MultiProc: Precision will use a maximum of 8 logical processors.
+# Info: [15302]: Setting up the design to use synthesis library "xca7.syn"
+# Info: [585]: The global max fanout is currently set to 10000 for Xilinx - ARTIX-7.
+# Info: [15328]: Setting Part to: "7A100TCSG324".
+# Info: [15329]: Setting Process to: "1".
+# Info: [7513]: The default input to Vivado place and route has been set to "Verilog".
+# Info: [7512]: The place and route tool for current technology is Vivado.
+# Info: [3052]: Decompressing file : /usr/share/precision/Mgc_home/pkgs/psr/techlibs/xca7.syn in /home/runner/impl_1/synlib.
+# Info: [3022]: Reading file: /home/runner/impl_1/synlib/xca7.syn.
+# Info: [645]: Loading library initialization file /usr/share/precision/Mgc_home/pkgs/psr/userware/xilinx_rename.tcl
+# Info: [40000]: vhdlorder, Release 2021a.12
+# Info: [40000]: Files sorted successfully.
+# Info: [40000]: hdl-analyze, Release RTLC-Precision 2021a.12
+# Info: [42502]: Analyzing input file "/home/runner/design.vhd" ...
+# Info: [670]: Top module of the design is set to: shifter.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [40000]: RTLC-Driver, Release RTLC-Precision 2021a.12
+# Info: [40000]: Last compiled on Jul  2 2021 08:23:33
+# Info: [44512]: Initializing...
+# Info: [44504]: Partitioning design ....
+# Info: [40000]: RTLCompiler, Release RTLC-Precision 2021a.12
+# Info: [40000]: Last compiled on Jul  2 2021 08:49:53
+# Info: [44512]: Initializing...
+# Info: [44522]: Root Module work.shifter(shifter_arc): Pre-processing...
+# Info: [44523]: Root Module work.shifter(shifter_arc): Compiling...
+# Warning: [45784]: "/home/runner/design.vhd", line 55: Module work.shifter(shifter_arc), Net(s) carry_in: Although this signal is not part of the sensitivity list of this block, it is being read. This may lead to simulation mismatch.
+# Info: [44842]: Compilation successfully completed.
+# Info: [44856]: Total lines of RTL compiled: 72.
+# Info: [44835]: Total CPU time for compilation: 0.0 secs.
+# Info: [44513]: Overall running time for compilation: 1.0 secs.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [15334]: Doing rtl optimizations.
+# Info: [671]: Finished compiling design.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [20026]: MultiProc: Precision will use a maximum of 8 logical processors.
+# Info: [15002]: Optimizing design view:.work.shifter.shifter_arc
+# Info: [15002]: Optimizing design view:.work.shifter.shifter_arc
+# Info: [8010]: Gated clock transformations: Begin...
+# Info: [8010]: Gated clock transformations: End...
+# Info: [3027]: Writing file: /home/runner/impl_1/shifter.edf.
+# Info: [3027]: Writing file: /home/runner/impl_1/shifter.xdc.
+# Info: -- Writing file /home/runner/impl_1/shifter.tcl
+# Info: [3027]: Writing file: /home/runner/impl_1/shifter.v.
+# Info: -- Writing file /home/runner/impl_1/shifter.tcl
+# Info: [671]: Finished synthesizing design.
+# Info: [11019]: Total CPU time for synthesis: 15.1 s secs.
+# Info: [11020]: Overall running time for synthesis: 19.3 s secs.
+# Info: /home/runner/impl_1/precision_tech.sdc
+# Info: [3027]: Writing file: /home/runner/precision.v.
+# Info: [3027]: Writing file: /home/runner/precision.xdc.
+# Info: -- Writing file /home/runner/impl_1/shifter.tcl
+# Info: Info, Command 'auto_write' finished successfully
+# Info: Num  File Type  Path
+# Info: --------------------------------------------------------------
+# Info: 0               /home/runner/impl_1/shifter_area.rep
+# Info: 1               /home/runner/impl_1/shifter_con_rep.sdc
+# Info: 2               /home/runner/impl_1/shifter_tech_con_rep.sdc
+# Info: 3               /home/runner/impl_1/shifter_fsm.rep
+# Info: 4               /home/runner/impl_1/shifter_dsp_modes.rep
+# Info: 5               /home/runner/impl_1/shifter_ram_modes.rep
+# Info: 6               /home/runner/impl_1/shifter_env.htm
+# Info: 7               /home/runner/impl_1/shifter.edf
+# Info: 8               /home/runner/impl_1/shifter.v
+# Info: 9               /home/runner/impl_1/shifter.xdc
+# Info: 10              /home/runner/impl_1/shifter.tcl
+# Info: ***************************************************************
+# Info: Device Utilization for 7A100TCSG324
+# Info: ***************************************************************
+# Info: Resource                          Used    Avail   Utilization
+# Info: ---------------------------------------------------------------
+# Info: IOs                               76      210      36.19%
+# Info: Global Buffers                    0       32        0.00%
+# Info: LUTs                              289     63400     0.46%
+# Info: CLB Slices                        59      15850     0.37%
+# Info: Dffs or Latches                   0       126800    0.00%
+# Info: Block RAMs                        0       135       0.00%
+# Info: DSP48E1s                          0       240       0.00%
+# Info: ---------------------------------------------------------------
+# Info: *************************************************************
+# Info: Library: work    Cell: shifter    View: shifter_arc
+# Info: *************************************************************
+# Info:  Number of ports :                           76
+# Info:  Number of nets :                           426
+# Info:  Number of instances :                      383
+# Info:  Number of references to this view :          0
+# Info: Total accumulated area :
+# Info:  Number of LUTs :                           289
+# Info:  Number of Primitive LUTs :                 307
+# Info:  Number of LUTs with LUTNM/HLUTNM :          36
+# Info:  Number of accumulated instances :          383
+# Info: *****************************
+# Info:  IO Register Mapping Report
+# Info: *****************************
+# Info: Design: work.shifter.shifter_arc
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | Port               | Direction |   INFF   |  OUTFF   |  TRIFF   |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(31)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(30)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(29)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(28)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(27)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(26)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(25)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(24)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(23)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(22)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(21)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(20)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(19)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(18)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(17)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(16)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(15)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(14)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(13)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(12)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(11)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(10)     | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(9)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(8)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(7)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(6)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(5)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(4)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(3)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(2)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(1)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_in(0)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(31)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(30)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(29)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(28)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(27)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(26)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(25)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(24)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(23)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(22)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(21)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(20)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(19)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(18)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(17)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(16)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(15)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(14)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(13)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(12)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(11)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(10)    | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(9)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(8)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(7)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(6)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(5)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(4)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(3)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(2)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(1)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shifter_out(0)     | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | carry_in           | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | carry_out          | Output    |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_type(1)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_type(0)      | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_amt(7)       | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_amt(6)       | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_amt(5)       | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_amt(4)       | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_amt(3)       | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_amt(2)       | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_amt(1)       | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: | shift_amt(0)       | Input     |          |          |          |
+# Info: +--------------------+-----------+----------+----------+----------+
+# Info: Total registers mapped: 0
+# Info: [12022]: Design has no timing constraint and no timing information.
