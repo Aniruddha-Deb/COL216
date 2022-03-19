@@ -14,9 +14,9 @@ all:
 	@ghdl -a cpu.vhdl
 
 test:
-	@./test_progs/gentest test_progs/dt_test.s dt_tb.vhdl
-	@ghdl -a dt_tb.vhdl
-	@ghdl -r cpu_tb --stop-time=300ns --wave=waves/dt_tb.ghw
+	@./test_progs/gentest test_progs/idx_test.s idx_tb.vhdl
+	@ghdl -a idx_tb.vhdl
+	@ghdl -r cpu_tb --stop-time=300ns --wave=waves/idx_tb.ghw
 
 clean:
 	rm work-obj93.cf

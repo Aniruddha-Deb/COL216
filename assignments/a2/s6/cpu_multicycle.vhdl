@@ -450,7 +450,7 @@ begin
                 ctrl_preindex <= '1';
             end if;
             -- writeback
-            if instruction(21) = '1' then
+            if instruction(21) = '1' or (instruction(24) = '0' and instruction(21) = '0') then
                 ctrl_w_addr <= '1';
                 ctrl_regfile_w_data <= '0';
                 ctrl_regfile_w_en <= '1';
