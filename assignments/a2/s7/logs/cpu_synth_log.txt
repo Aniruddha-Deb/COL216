@@ -1,0 +1,232 @@
+precision: Setting MGC_HOME to /usr/share/precision/Mgc_home ...
+precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Source)  -- 5.4.0-100-generic -- x86_64 
+//  Precision RTL Synthesis 64-bit 2021.1.0.4 (Production Release) Tue Jul 20 01:22:31 PDT 2021
+//  
+//  Copyright (c) Mentor Graphics Corporation, 1996-2021, All Rights Reserved.
+//             Portions copyright 1991-2008 Compuware Corporation
+//                       UNPUBLISHED, LICENSED SOFTWARE.
+//            CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+//          PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+//  
+//  Running on Linux runner@403352016ab1 #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 5.4.0-100-generic x86_64
+//  
+//  Start time Sat Mar 19 08:23:31 2022
+# -------------------------------------------------
+# Info: [9569]: Logging session transcript to file /home/runner/precision.log
+# Warning: [9508]: Results directory is not set. Use new_project, open_project, or set_results_dir.
+# Info: [9577]: Input directory: /home/runner
+# Info: [9572]: Moving session transcript to file /home/runner/precision.log
+# Info: [9558]: Created project /home/runner/project_1.psp in folder /home/runner.
+# Info: [9531]: Created directory: /home/runner/impl_1.
+# Info: [9557]: Created implementation impl_1 in project /home/runner/project_1.psp.
+# Info: [9578]: The Results Directory has been set to: /home/runner/impl_1/
+# Info: [9569]: Logging project transcript to file /home/runner/impl_1/precision.log
+# Info: [9569]: Logging suppressed messages transcript to file /home/runner/impl_1/precision.log.suppressed
+# Info: [9552]: Activated implementation impl_1 in project /home/runner/project_1.psp.
+# Info: [20026]: MultiProc: Precision will use a maximum of 8 logical processors.
+# Info: [15302]: Setting up the design to use synthesis library "xca7.syn"
+# Info: [585]: The global max fanout is currently set to 10000 for Xilinx - ARTIX-7.
+# Info: [15328]: Setting Part to: "7A100TCSG324".
+# Info: [15329]: Setting Process to: "1".
+# Info: [7513]: The default input to Vivado place and route has been set to "Verilog".
+# Info: [7512]: The place and route tool for current technology is Vivado.
+# Info: [3052]: Decompressing file : /usr/share/precision/Mgc_home/pkgs/psr/techlibs/xca7.syn in /home/runner/impl_1/synlib.
+# Info: [3022]: Reading file: /home/runner/impl_1/synlib/xca7.syn.
+# Info: [645]: Loading library initialization file /usr/share/precision/Mgc_home/pkgs/psr/userware/xilinx_rename.tcl
+# Info: [40000]: vhdlorder, Release 2021a.12
+# Info: [40000]: Files sorted successfully.
+# Info: [40000]: hdl-analyze, Release RTLC-Precision 2021a.12
+# Info: [42502]: Analyzing input file "/home/runner/design.vhd" ...
+# Info: [670]: Top module of the design is set to: cpu.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [40000]: RTLC-Driver, Release RTLC-Precision 2021a.12
+# Info: [40000]: Last compiled on Jul  2 2021 08:23:33
+# Info: [44512]: Initializing...
+# Info: [44504]: Partitioning design ....
+# Info: [40000]: RTLCompiler, Release RTLC-Precision 2021a.12
+# Info: [40000]: Last compiled on Jul  2 2021 08:49:53
+# Info: [44512]: Initializing...
+# Info: [44522]: Root Module work.cpu(cpu_multicycle_arch){generic map (...)}: Pre-processing...
+# Info: [45143]: "/home/runner/design.vhd", line 23: Enumerated type DT_type with 8 elements encoded as onehot.
+# Info: [45144]: Encodings for DT_type values.
+# Info: [40000]: value                                                         DT_type[7-0]
+# Info: [40000]: ldr                                                          00000001
+# Info: [40000]: str                                                          00000010
+# Info: [40000]: ldrb                                                         00000100
+# Info: [40000]: strb                                                         00001000
+# Info: [40000]: ldrh                                                         00010000
+# Info: [40000]: strh                                                         00100000
+# Info: [40000]: ldrsh                                                        01000000
+# Info: [40000]: ldrsb                                                        10000000
+# Info: [44506]: Module work.cpu_multicycle_datapath(cpu_multicycle_datapath_arc){generic map (...)}: Pre-processing...
+# Info: [44506]: Module work.reg(reg_arc){generic map (size => 32)}: Pre-processing...
+# Info: [44506]: Module work.mux_2(mux_2_arc){generic map (size => 32)}: Pre-processing...
+# Info: [44506]: Module work.memory(memory_arc){generic map (...)}: Pre-processing...
+# Info: [45251]: Built-in hardware memory core inferred for variable ': memory.ram depth = 128, width = 32'.
+# Info: [44506]: Module work.mux_2(mux_2_arc){generic map (size => 4)}: Pre-processing...
+# Info: [44506]: Module work.regfile(regfile_bvr): Pre-processing...
+# Info: [45251]: Built-in hardware memory core inferred for variable ': regfile.regs depth = 16, width = 32'.
+# Info: [44506]: Module work.mux_2(mux_2_arc){generic map (size => 5)}: Pre-processing...
+# Info: [44506]: Module work.mux_2(mux_2_arc){generic map (size => 8)}: Pre-processing...
+# Info: [44506]: Module work.shifter(shifter_arc): Pre-processing...
+# Info: [44506]: Module work.pmconnect(pmconnect_arc): Pre-processing...
+# Info: [44506]: Module work.sign_extender(sign_extender_arc){generic map (in_size => 12 out_size => 32)}: Pre-processing...
+# Info: [44506]: Module work.sign_extender(sign_extender_arc){generic map (in_size => 24 out_size => 32)}: Pre-processing...
+# Info: [44506]: Module work.mux(mux_arc){generic map (size => 4 select_signal_size => 2)}: Pre-processing...
+# Info: [44506]: Module work.alu(alu_bvr): Pre-processing...
+# Info: [44506]: Module work.reg(reg_arc){generic map (size => 4)}: Pre-processing...
+# Info: [44506]: Module work.predicator(predicator_arc): Pre-processing...
+# Info: [44506]: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc): Pre-processing...
+# Info: [45143]: "/home/runner/design.vhd", line 652: Enumerated type fsm_state with 10 elements encoded as onehot.
+# Info: [45144]: Encodings for fsm_state values.
+# Info: [40000]: value                                                       fsm_state[9-0]
+# Info: [40000]: fetch                                                      0000000001
+# Info: [40000]: decode                                                     0000000010
+# Info: [40000]: shift                                                      0000000100
+# Info: [40000]: execute_dp                                                 0000001000
+# Info: [40000]: writeback_dp                                               0000010000
+# Info: [40000]: execute_dt                                                 0000100000
+# Info: [40000]: writeback_dt_str                                           0001000000
+# Info: [40000]: load_dt_ldr                                                0010000000
+# Info: [40000]: writeback_dt_ldr                                           0100000000
+# Info: [40000]: execute_b                                                  1000000000
+# Info: [45144]: Extracted FSM in module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), with state variable = curr_state[9:0], async set/reset state(s) = (none), number of states = 10.
+# Info: [45144]: Re-encoding 10 state FSM as "onehot".
+# Info: [45144]: FSM: State encoding table.
+# Info: [40000]: FSM:   Index              State Name                               Literal                       Encoding
+# Info: [40000]: FSM:       0                   fetch                            0000000001                     0000000001
+# Info: [40000]: FSM:       1                  decode                            0000000010                     0000000010
+# Info: [40000]: FSM:       2                   shift                            0000000100                     0000000100
+# Info: [40000]: FSM:       3              execute_dp                            0000001000                     0000001000
+# Info: [40000]: FSM:       4            writeback_dp                            0000010000                     0000010000
+# Info: [40000]: FSM:       5              execute_dt                            0000100000                     0000100000
+# Info: [40000]: FSM:       6        writeback_dt_str                            0001000000                     0001000000
+# Info: [40000]: FSM:       7             load_dt_ldr                            0010000000                     0010000000
+# Info: [40000]: FSM:       8        writeback_dt_ldr                            0100000000                     0100000000
+# Info: [40000]: FSM:       9               execute_b                            1000000000                     1000000000
+# Warning: [45729]: "/home/runner/design.vhd", line 134: Input port addr[31:9] has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 134: Input port addr[1:0] has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 529: signal branch_addr_shift has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 642: Input port instruction[19:12] has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 642: Input port instruction[3:0] has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 643: Input port shifter_carry_out has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 644: Input port alu_flags_out has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 646: Input port flags[3] has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 646: Input port flags[1:0] has never been used.
+# Info: [44508]: Module work.reg(reg_arc){generic map (size => 32)}: Compiling...
+# Info: [44508]: Module work.mux_2(mux_2_arc){generic map (size => 32)}: Compiling...
+# Info: [44508]: Module work.memory(memory_arc){generic map (...)}: Compiling...
+# Warning: [45784]: "/home/runner/design.vhd", line 159: Module work.memory(memory_arc){generic map (...)}, Net(s) addr[8:2]: Although this signal is not part of the sensitivity list of this block, it is being read. This may lead to simulation mismatch.
+# Info: [44508]: Module work.mux_2(mux_2_arc){generic map (size => 4)}: Compiling...
+# Info: [44508]: Module work.regfile(regfile_bvr): Compiling...
+# Info: [44508]: Module work.mux_2(mux_2_arc){generic map (size => 5)}: Compiling...
+# Info: [44508]: Module work.mux_2(mux_2_arc){generic map (size => 8)}: Compiling...
+# Info: [44508]: Module work.shifter(shifter_arc): Compiling...
+# Warning: [45784]: "/home/runner/design.vhd", line 255: Module work.shifter(shifter_arc), Net(s) carry_in: Although this signal is not part of the sensitivity list of this block, it is being read. This may lead to simulation mismatch.
+# Info: [44508]: Module work.pmconnect(pmconnect_arc): Compiling...
+# Info: [44508]: Module work.sign_extender(sign_extender_arc){generic map (in_size => 12 out_size => 32)}: Compiling...
+# Info: [44508]: Module work.sign_extender(sign_extender_arc){generic map (in_size => 24 out_size => 32)}: Compiling...
+# Info: [44508]: Module work.mux(mux_arc){generic map (size => 4 select_signal_size => 2)}: Compiling...
+# Info: [44508]: Module work.alu(alu_bvr): Compiling...
+# Info: [44508]: Module work.reg(reg_arc){generic map (size => 4)}: Compiling...
+# Info: [44508]: Module work.predicator(predicator_arc): Compiling...
+# Info: [44508]: Module work.cpu_multicycle_datapath(cpu_multicycle_datapath_arc){generic map (...)}: Compiling...
+# Info: [44508]: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc): Compiling...
+# Warning: [45784]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) prediction, flags[2]: Although this signal is not part of the sensitivity list of this block, it is being read. This may lead to simulation mismatch.
+# Info: [44523]: Root Module work.cpu(cpu_multicycle_arch){generic map (...)}: Compiling...
+# Warning: [45741]: "/home/runner/design.vhd", line 973: FSM state variable 'curr_state' doesn't have asynchronous or synchronous set/reset condition.
+# Warning: [45741]: "/home/runner/design.vhd", line 973: FSM state variable 'curr_state' doesn't have asynchronous or synchronous set/reset condition.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_alu_opcode[3:0]: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_alu_c_in: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_alu_op_mux: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_alu_shift_op_mux[1:0]: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_regfile_w_en: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_regfile_w_data: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_regfile_r_addr_1: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_regfile_r_addr_2: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_shift_amt: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_shifter_in: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_rot_imm: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_shifter_carry_in: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_shift_type[1:0]: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_offset_type: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_pmc_instr[7:0]: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_pmc_en: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_mem_ad_mux: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_ir_write: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_dr_write: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_pc_write: Latch inferred.
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_flag_set: Latch inferred.
+# Info: [45309]: "/home/runner/design.vhd", line 658: Optimizing state bit(s) ctrl_flags[3:0] to constant 0
+# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_predict_cond[3:0]: Latch inferred.
+# Info: [44846]: Rebalanced Expression Tree...
+# Info: [44842]: Compilation successfully completed.
+# Info: [44856]: Total lines of RTL compiled: 1225.
+# Info: [44835]: Total CPU time for compilation: 0.0 secs.
+# Info: [44513]: Overall running time for compilation: 1.0 secs.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [15334]: Doing rtl optimizations.
+# Info: [671]: Finished compiling design.
+# Info: [668]: Current working directory: /home/runner/impl_1.
+# Info: [20026]: MultiProc: Precision will use a maximum of 8 logical processors.
+# Info: [15002]: Optimizing design view:.work.cpu.cpu_multicycle_arch
+# Info: [15002]: Optimizing design view:.work.cpu.cpu_multicycle_arch
+# Info: [8010]: Gated clock transformations: Begin...
+# Info: [8010]: Gated clock transformations: End...
+# Info: [3027]: Writing file: /home/runner/impl_1/cpu.edf.
+# Info: -- Writing file /home/runner/impl_1/cpu.tcl
+# Info: [3027]: Writing file: /home/runner/impl_1/cpu.v.
+# Info: -- Writing file /home/runner/impl_1/cpu.tcl
+# Info: [671]: Finished synthesizing design.
+# Info: [11019]: Total CPU time for synthesis: 0.1 s secs.
+# Info: [11020]: Overall running time for synthesis: 0.1 s secs.
+# Info: /home/runner/impl_1/precision_tech.sdc
+# Info: [3027]: Writing file: /home/runner/precision.v.
+# Info: -- Writing file /home/runner/impl_1/cpu.tcl
+# Info: Info, Command 'auto_write' finished successfully
+# Info: Num  File Type  Path
+# Info: ----------------------------------------------------------
+# Info: 0               /home/runner/impl_1/cpu_area.rep
+# Info: 1               /home/runner/impl_1/cpu_con_rep.sdc
+# Info: 2               /home/runner/impl_1/cpu_tech_con_rep.sdc
+# Info: 3               /home/runner/impl_1/cpu_fsm.rep
+# Info: 4               /home/runner/impl_1/cpu_dsp_modes.rep
+# Info: 5               /home/runner/impl_1/cpu_ram_modes.rep
+# Info: 6               /home/runner/impl_1/cpu_env.htm
+# Info: 7               /home/runner/impl_1/cpu.edf
+# Info: 8               /home/runner/impl_1/cpu.v
+# Info: 9               /home/runner/impl_1/cpu.tcl
+# Info: ***************************************************************
+# Info: Device Utilization for 7A100TCSG324
+# Info: ***************************************************************
+# Info: Resource                          Used    Avail   Utilization
+# Info: ---------------------------------------------------------------
+# Info: IOs                               1       210       0.48%
+# Info: Global Buffers                    0       32        0.00%
+# Info: LUTs                              0       63400     0.00%
+# Info: CLB Slices                        0       15850     0.00%
+# Info: Dffs or Latches                   0       126800    0.00%
+# Info: Block RAMs                        0       135       0.00%
+# Info: DSP48E1s                          0       240       0.00%
+# Info: ---------------------------------------------------------------
+# Info: *****************************************************************
+# Info: Library: work    Cell: cpu    View: cpu_multicycle_arch
+# Info: *****************************************************************
+# Info:  Number of ports :                            1
+# Info:  Number of nets :                             0
+# Info:  Number of instances :                        0
+# Info:  Number of references to this view :          0
+# Info: Total accumulated area :
+# Info:  Number of gates :                            0
+# Info:  Number of accumulated instances :            0
+# Info: *****************************
+# Info:  IO Register Mapping Report
+# Info: *****************************
+# Info: Design: work.cpu.cpu_multicycle_arch
+# Info: +----------+-----------+----------+----------+----------+
+# Info: | Port     | Direction |   INFF   |  OUTFF   |  TRIFF   |
+# Info: +----------+-----------+----------+----------+----------+
+# Info: | clock    | Input     |          |          |          |
+# Info: +----------+-----------+----------+----------+----------+
+# Info: Total registers mapped: 0
+# Info: [12022]: Design has no timing constraint and no timing information.
