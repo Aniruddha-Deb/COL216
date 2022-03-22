@@ -6,15 +6,20 @@ use ieee.numeric_std.all;
 use work.MyTypes.all;
 
 entity cpu_datapath is
+    generic (
+        memory_defaults: mem(127 downto 0) := (others => x"00000000")
+    );
     port (
+
+        clock: in std_logic;
 
         -- alu;
         alu_shift_op : in word;
         alu_op : in word;
-        alu_flags_in : in flags;
+        alu_flags_in : in flags_t;
         alu_opcode : in DP_opcode_t;
         alu_ans : out word;
-        alu_flags_out : out flags;
+        alu_flags_out : out flags_t;
 
         -- regfile;
         regfile_r_addr_1 : in nibble;
@@ -22,12 +27,10 @@ entity cpu_datapath is
         regfile_w_addr : in nibble;
         regfile_data_in : in word;
         regfile_w_en : in std_logic;
-        regfile_clk : in std_logic;
         regfile_out_1 : out word;
         regfile_out_2 : out word;
 
         -- memory;
-        memory_clock : in std_logic;
         memory_addr : in word;
         memory_data_in : in word;
         memory_w_en : in nibble;
@@ -53,7 +56,7 @@ entity cpu_datapath is
 
         -- predicator;
         predicator_condition : in condition_t;
-        predicator_flags_in : in flags;
+        predicator_flags_in : in flags_t;
         predicator_p : out std_logic;
 
         -- instr_decoder;
@@ -70,8 +73,8 @@ architecture cpu_datapath_arc of cpu_datapath is
 begin
 
     alu: entity work.alu port map (alu_shift_op, alu_op, alu_flags_in, alu_opcode, alu_ans, alu_flags_out);
-    regfile: entity work.regfile port map (regfile_r_addr_1, regfile_r_addr_2, regfile_w_addr, regfile_data_in, regfile_w_en, regfile_clk, regfile_out_1, regfile_out_2);
-    memory: entity work.memory port map (memory_clock, memory_addr, memory_data_in, memory_w_en, memory_data_out);
+    regfile: entity work.regfile port map (regfile_r_addr_1, regfile_r_addr_2, regfile_w_addr, regfile_data_in, regfile_w_en, clock, regfile_out_1, regfile_out_2);
+    memory: entity work.memory generic map (memory_defaults) port map (clock, memory_addr, memory_data_in, memory_w_en, memory_data_out);
     pmconnect: entity work.pmconnect port map (pmconnect_Rout, pmconnect_Rin, pmconnect_dt_opcode, pmconnect_enable, pmconnect_adr, pmconnect_Min, pmconnect_Mout, pmconnect_MW);
     shifter: entity work.shifter port map (shifter_shifter_in, shifter_shifter_out, shifter_carry_in, shifter_carry_out, shifter_shift_type, shifter_shift_amt);
     predicator: entity work.predicator port map (predicator_condition, predicator_flags_in, predicator_p);

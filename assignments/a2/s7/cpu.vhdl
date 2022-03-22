@@ -14,46 +14,61 @@ end cpu;
 
 architecture cpu_multicycle_arch of cpu is
 
-    signal ctrl_alu_opcode : std_logic_vector(3 downto 0);
-    signal ctrl_alu_c_in : std_logic;
-    signal ctrl_alu_op_mux : std_logic;
-    signal ctrl_alu_shift_op_mux : std_logic_vector(1 downto 0);
+    signal clock: std_logic;
 
-    signal ctrl_regfile_w_en : std_logic;
-    signal ctrl_regfile_w_data : std_logic;
-    signal ctrl_regfile_r_addr_1 : std_logic;
-    signal ctrl_regfile_r_addr_2 : std_logic;
+    -- alu;
+    signal alu_shift_op : word;
+    signal alu_op : word;
+    signal alu_flags_in : flags;
+    signal alu_opcode : DP_opcode_t;
+    signal alu_ans : word;
+    signal alu_flags_out : flags;
 
-    signal ctrl_shift_amt : std_logic;
-    signal ctrl_shifter_in : std_logic;
-    signal ctrl_rot_imm : std_logic;
-    signal ctrl_shifter_carry_in : std_logic;
-    signal ctrl_shift_type : std_logic_vector(1 downto 0);
-    signal ctrl_offset_type : std_logic;
+    -- regfile;
+    signal regfile_r_addr_1 : nibble;
+    signal regfile_r_addr_2 : nibble;
+    signal regfile_w_addr : nibble;
+    signal regfile_data_in : word;
+    signal regfile_w_en : std_logic;
+    signal regfile_out_1 : word;
+    signal regfile_out_2 : word;
 
-    signal ctrl_pmc_instr : DT_type;
-    signal ctrl_pmc_en : std_logic;
+    -- memory;
+    signal memory_addr : word;
+    signal memory_data_in : word;
+    signal memory_w_en : nibble;
+    signal memory_data_out : word;
 
-    signal ctrl_mem_ad_mux : std_logic;
-    
-    signal ctrl_ir_write : std_logic;
-    signal ctrl_dr_write : std_logic;
-    signal ctrl_res_write : std_logic;
-    signal ctrl_pc_write : std_logic;
-    signal ctrl_a_write : std_logic;
-    signal ctrl_b_write : std_logic;
-    signal ctrl_preindex : std_logic;
-    signal ctrl_w_addr : std_logic;
+    -- pmconnect;
+    signal pmconnect_Rout : word;
+    signal pmconnect_Rin : word;
+    signal pmconnect_dt_opcode : DT_opcode_t;
+    signal pmconnect_enable : std_logic;
+    signal pmconnect_adr : bit_pair;
+    signal pmconnect_Min : word;
+    signal pmconnect_Mout : word;
+    signal pmconnect_MW : nibble;
 
-    signal ctrl_flag_set : std_logic;
-    signal ctrl_flags : std_logic_vector(3 downto 0);
-    signal ctrl_predict_cond : std_logic_vector(3 downto 0);
-
-    signal instruction: std_logic_vector(31 downto 0);
+    -- shifter;
+    signal shifter_shifter_in : word;
+    signal shifter_shifter_out : word;
+    signal shifter_carry_in : std_logic;
     signal shifter_carry_out : std_logic;
-    signal alu_flags_out: std_logic_vector(3 downto 0); -- TODO fix flags
-    signal prediction: std_logic;
-    signal flags: std_logic_vector(3 downto 0);
+    signal shifter_shift_type : bit_pair;
+    signal shifter_shift_amt : byte;
+
+    -- predicator;
+    signal predicator_condition : condition_t;
+    signal predicator_flags_in : flags;
+    signal predicator_p : std_logic;
+
+    -- instr_decoder;
+    signal instr_decoder_instruction : word;
+    signal instr_decoder_instruction_class : instruction_t;
+    signal instr_decoder_DP_opcode : DP_opcode_t;
+    signal instr_decoder_condition : condition_t;
+    signal instr_decoder_DT_opcode : DT_opcode_t;
+    signal instr_decoder_shift : shift_t
 
 begin
     cpu_multicycle_datapath: entity work.cpu_multicycle_datapath 
@@ -63,90 +78,116 @@ begin
     port map (
         clock,
 
-        ctrl_alu_opcode,
-        ctrl_alu_c_in,
-        ctrl_alu_op_mux,
-        ctrl_alu_shift_op_mux,
-
-        ctrl_regfile_w_en,
-        ctrl_regfile_w_data,
-        ctrl_regfile_r_addr_1,
-        ctrl_regfile_r_addr_2,
-
-        ctrl_shift_amt,
-        ctrl_shifter_in,
-        ctrl_rot_imm,
-        ctrl_shifter_carry_in,
-        ctrl_shift_type,
-        ctrl_offset_type,
-
-        ctrl_pmc_instr,
-        ctrl_pmc_en,
-
-        ctrl_mem_ad_mux,
-        
-        ctrl_ir_write,
-        ctrl_dr_write,
-        ctrl_res_write,
-        ctrl_pc_write,
-        ctrl_a_write,
-        ctrl_b_write,
-        ctrl_preindex,
-        ctrl_w_addr,
-        
-        ctrl_flag_set,
-        ctrl_flags,
-        ctrl_predict_cond,
-
-        instruction,
-        shifter_carry_out,
+        -- alu;
+        alu_shift_op,
+        alu_op,
+        alu_flags_in,
+        alu_opcode,
+        alu_ans,
         alu_flags_out,
-        prediction,
-        flags
+
+        -- regfile;
+        regfile_r_addr_1,
+        regfile_r_addr_2,
+        regfile_w_addr,
+        regfile_data_in,
+        regfile_w_en,
+        regfile_out_1,
+        regfile_out_2,
+
+        -- memory;
+        memory_addr,
+        memory_data_in,
+        memory_w_en,
+        memory_data_out,
+
+        -- pmconnect;
+        pmconnect_Rout,
+        pmconnect_Rin,
+        pmconnect_dt_opcode,
+        pmconnect_enable,
+        pmconnect_adr,
+        pmconnect_Min,
+        pmconnect_Mout,
+        pmconnect_MW,
+
+        -- shifter;
+        shifter_shifter_in,
+        shifter_shifter_out,
+        shifter_carry_in,
+        shifter_carry_out,
+        shifter_shift_type,
+        shifter_shift_amt,
+
+        -- predicator;
+        predicator_condition,
+        predicator_flags_in,
+        predicator_p,
+
+        -- instr_decoder;
+        instr_decoder_instruction,
+        instr_decoder_instruction_class,
+        instr_decoder_DP_opcode,
+        instr_decoder_condition,
+        instr_decoder_DT_opcode,
+        instr_decoder_shift
     );
 
     cpu_multicycle_controller: entity work.cpu_multicycle_controller port map (
         clock,
 
-        ctrl_alu_opcode,
-        ctrl_alu_c_in,
-        ctrl_alu_op_mux,
-        ctrl_alu_shift_op_mux,
-
-        ctrl_regfile_w_en,
-        ctrl_regfile_w_data,
-        ctrl_regfile_r_addr_1,
-        ctrl_regfile_r_addr_2,
-
-        ctrl_shift_amt,
-        ctrl_shifter_in,
-        ctrl_rot_imm,
-        ctrl_shifter_carry_in,
-        ctrl_shift_type,
-        ctrl_offset_type,
-
-        ctrl_pmc_instr,
-        ctrl_pmc_en,
-
-        ctrl_mem_ad_mux,
-        
-        ctrl_ir_write,
-        ctrl_dr_write,
-        ctrl_res_write,
-        ctrl_pc_write,
-        ctrl_a_write,
-        ctrl_b_write,
-        ctrl_preindex,
-        ctrl_w_addr,
-        
-        ctrl_flag_set,
-        ctrl_flags,
-        ctrl_predict_cond,
-
-        instruction,
-        shifter_carry_out,
+        -- alu;
+        alu_shift_op,
+        alu_op,
+        alu_flags_in,
+        alu_opcode,
+        alu_ans,
         alu_flags_out,
-        prediction,
-        flags
+
+        -- regfile;
+        regfile_r_addr_1,
+        regfile_r_addr_2,
+        regfile_w_addr,
+        regfile_data_in,
+        regfile_w_en,
+        regfile_out_1,
+        regfile_out_2,
+
+        -- memory;
+        memory_addr,
+        memory_data_in,
+        memory_w_en,
+        memory_data_out,
+
+        -- pmconnect;
+        pmconnect_Rout,
+        pmconnect_Rin,
+        pmconnect_dt_opcode,
+        pmconnect_enable,
+        pmconnect_adr,
+        pmconnect_Min,
+        pmconnect_Mout,
+        pmconnect_MW,
+
+        -- shifter;
+        shifter_shifter_in,
+        shifter_shifter_out,
+        shifter_carry_in,
+        shifter_carry_out,
+        shifter_shift_type,
+        shifter_shift_amt,
+
+        -- predicator;
+        predicator_condition,
+        predicator_flags_in,
+        predicator_p,
+
+        -- instr_decoder;
+        instr_decoder_instruction,
+        instr_decoder_instruction_class,
+        instr_decoder_DP_opcode,
+        instr_decoder_condition,
+        instr_decoder_DT_opcode,
+        instr_decoder_shift
     );
 end cpu_multicycle_arch;

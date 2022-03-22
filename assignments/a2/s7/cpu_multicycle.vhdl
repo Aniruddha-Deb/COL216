@@ -258,6 +258,9 @@ begin
         -- We can't do this in reverse, because A would then store an incorrect 
         -- value (the value of Rs, the shift register) before going into the 
         -- execution step.
+        -- 
+        -- Actually, we can: simply store A, and then store B.
+        -- I am a dum dum
         when decode => 
             ctrl_alu_opcode <= "0000";
             ctrl_alu_c_in <= '0';

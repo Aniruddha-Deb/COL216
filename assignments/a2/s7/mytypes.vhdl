@@ -16,12 +16,12 @@ package MyTypes is
     constant cpsr_C: integer := 2;
     constant cpsr_V: integer := 3;
 
-    type flags is record 
+    type flags_t is record 
         negative: std_logic;
         zero: std_logic;
         carry: std_logic;
         overflow: std_logic;
-    end record flags;
+    end record flags_t;
 
     type instruction_t is (DP_IMM_SHIFT, DP_REG_SHIFT, DP_IMM, DT_IMM, DT_REG, DT_HW_IMM, DT_HW_REG, LDR_SIGNED_REG, LDR_SIGNED_IMM, BRANCH);
     type DP_opcode_t is (ANDOP, EOR, SUB, RSB, ADD, ADC, SBC, RSC, TST, TEQ, CMP, CMN, ORR, MOV, BIC, MVN);

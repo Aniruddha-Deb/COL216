@@ -7,10 +7,10 @@ entity alu is
     port (
         shift_op: in word;
         op: in word; 
-        flags_in: in flags;
+        flags_in: in flags_t;
         opcode: in DP_opcode_t;
         ans: out word;
-        flags_out: out flags
+        flags_out: out flags_t
     );
 end alu;
 

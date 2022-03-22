@@ -5,7 +5,7 @@ use work.MyTypes.all;
 entity predicator is
     port (
         condition: in condition_t;
-        flags_in: in flags;
+        flags_in: in flags_t;
         p: out std_logic
     );
 end predicator;
