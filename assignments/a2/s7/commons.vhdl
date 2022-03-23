@@ -7,8 +7,8 @@ entity reg is
     port (
         data_in  : in std_logic_vector((size-1) downto 0);
         data_out : out std_logic_vector((size-1) downto 0) := (others => '0');
-        clock    : in std_logic;
-        w_en     : in std_logic
+        w_en     : in std_logic;
+        clock    : in std_logic
     );
 end reg;
 

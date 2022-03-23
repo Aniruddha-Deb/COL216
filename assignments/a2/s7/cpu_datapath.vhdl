@@ -51,7 +51,7 @@ entity cpu_datapath is
         shifter_shifter_out : out word;
         shifter_carry_in : in std_logic;
         shifter_carry_out : out std_logic;
-        shifter_shift_type : in bit_pair;
+        shifter_shift_type : in shift_t;
         shifter_shift_amt : in byte;
 
         -- predicator;

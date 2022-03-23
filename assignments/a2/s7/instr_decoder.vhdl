@@ -19,14 +19,14 @@ architecture instr_decoder_arc of instr_decoder is
 begin
 
     instruction_class <= DP_IMM_SHIFT when instruction(27 downto 25) = "000" and instruction(4) = '0' else
+                         DT_HW_IMM when instruction(27 downto 25) = "000" and instruction(22) = '1' and instruction(7 downto 4) = "1011" else
+                         DT_HW_REG when instruction(27 downto 25) = "000" and instruction(22) = '0' and instruction(7 downto 4) = "1011" else
+                         LDR_SIGNED_REG when instruction(27 downto 25) = "000" and instruction(22) = '0' and instruction(20) = '1' and instruction(7 downto 6) = "11" and instruction(4) = '1' else
+                         LDR_SIGNED_IMM when instruction(27 downto 25) = "000" and instruction(22) = '1' and instruction(20) = '1' and instruction(7 downto 6) = "11" and instruction(4) = '1' else
                          DP_REG_SHIFT when instruction(27 downto 25) = "000" and instruction(4) = '1' else
                          DP_IMM when instruction(27 downto 25) = "001" else
                          DT_IMM when instruction(27 downto 25) = "010" else
                          DT_REG when instruction(27 downto 25) = "011" and instruction(4) = '0' else -- TODO ones below this
-                         DT_HW_IMM when instruction(27 downto 25) = "000" and instruction(4) = '0' else
-                         DT_HW_REG when instruction(27 downto 25) = "000" and instruction(4) = '0' else
-                         LDR_SIGNED_REG when instruction(27 downto 25) = "000" and instruction(4) = '0' else
-                         LDR_SIGNED_IMM when instruction(27 downto 25) = "000" and instruction(4) = '0' else
                          BRANCH;
 
     condition <= EQ when instruction(31 downto 28) = "0000" else
@@ -62,7 +62,14 @@ begin
                  BIC when instruction(24 downto 21) = "1110" else
                  MVN;
 
-    DT_opcode <= LDR;
+    DT_opcode <= LDR when instruction(27 downto 26) = "01" and instruction(22) = '0' and instruction(20) = '1' else
+                 STR when instruction(27 downto 26) = "01" and instruction(22) = '0' and instruction(20) = '0' else
+                 LDRB when instruction(27 downto 26) = "01" and instruction(22) = '1' and instruction(20) = '1' else -- TODO ones below this
+                 STRB when instruction(27 downto 26) = "01" and instruction(22) = '1' and instruction(20) = '0' else
+                 LDRH when instruction(27 downto 25) = "000" and instruction(20) = '1' and instruction(6) = '0' else
+                 STRH when instruction(27 downto 25) = "000" and instruction(20) = '0' else
+                 LDRSH when instruction(27 downto 25) = "000" and instruction(20) = '1' and instruction(6) = '1' and instruction(5) = '1' else
+                 LDRSB;
 
     shift <= LS_LEFT when instruction(6 downto 5) = "00" else 
              LS_RIGHT when instruction(6 downto 5) = "01" else 

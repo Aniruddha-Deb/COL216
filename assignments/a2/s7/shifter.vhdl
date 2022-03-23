@@ -9,7 +9,7 @@ entity shifter is
         shifter_out: out word;
         carry_in: in std_logic;
         carry_out: out std_logic;
-        shift_type: in bit_pair;
+        shift_type: in shift_t;
         shift_amt: in byte
         -- taking shift amount from register requires that we take the LSB, as
         -- shift amounts from register may be greater than 32 (ref: ARMARM)
@@ -25,7 +25,7 @@ begin
     begin
         shift := to_integer(unsigned(shift_amt));
 
-        if shift_type = "00" then
+        if shift_type = LS_LEFT then
             shifter_out <= std_logic_vector(shift_left(unsigned(shifter_in), shift));
             if shift = 0 then
                 carry_out <= carry_in;
@@ -34,7 +34,7 @@ begin
             else
                 carry_out <= '0';
             end if;
-        elsif shift_type = "01" then
+        elsif shift_type = LS_RIGHT then
             shifter_out <= std_logic_vector(shift_right(unsigned(shifter_in), shift));
             if shift = 0 then 
                 carry_out <= carry_in;
@@ -43,7 +43,7 @@ begin
             else
                 carry_out <= '0';
             end if;
-        elsif shift_type = "10" then
+        elsif shift_type = AS_RIGHT then
             shifter_out <= std_logic_vector(shift_right(signed(shifter_in), to_integer(unsigned(shift_amt))));
             if shift = 0 then
                 carry_out <= carry_in;
@@ -52,7 +52,7 @@ begin
             else
                 carry_out <= shifter_in(31);
             end if;
-        elsif shift_type = "11" then
+        elsif shift_type = ROT_RIGHT then
             if shift = 0 then
                 -- RRX is supposed to come in here ideally, however the way we've 
                 -- structured our datapath, RRX will need some restructuring

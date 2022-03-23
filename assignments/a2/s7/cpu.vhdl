@@ -14,15 +14,13 @@ end cpu;
 
 architecture cpu_multicycle_arch of cpu is
 
-    signal clock: std_logic;
-
     -- alu;
     signal alu_shift_op : word;
     signal alu_op : word;
-    signal alu_flags_in : flags;
+    signal alu_flags_in : flags_t;
     signal alu_opcode : DP_opcode_t;
     signal alu_ans : word;
-    signal alu_flags_out : flags;
+    signal alu_flags_out : flags_t;
 
     -- regfile;
     signal regfile_r_addr_1 : nibble;
@@ -54,12 +52,12 @@ architecture cpu_multicycle_arch of cpu is
     signal shifter_shifter_out : word;
     signal shifter_carry_in : std_logic;
     signal shifter_carry_out : std_logic;
-    signal shifter_shift_type : bit_pair;
+    signal shifter_shift_type : shift_t;
     signal shifter_shift_amt : byte;
 
     -- predicator;
     signal predicator_condition : condition_t;
-    signal predicator_flags_in : flags;
+    signal predicator_flags_in : flags_t;
     signal predicator_p : std_logic;
 
     -- instr_decoder;
@@ -68,14 +66,10 @@ architecture cpu_multicycle_arch of cpu is
     signal instr_decoder_DP_opcode : DP_opcode_t;
     signal instr_decoder_condition : condition_t;
     signal instr_decoder_DT_opcode : DT_opcode_t;
-    signal instr_decoder_shift : shift_t
-
+    signal instr_decoder_shift : shift_t;
 begin
-    cpu_multicycle_datapath: entity work.cpu_multicycle_datapath 
-    generic map (
-        memory_defaults
-    )
-    port map (
+
+    datapath: entity work.cpu_datapath generic map (memory_defaults) port map (
         clock,
 
         -- alu;
@@ -133,7 +127,7 @@ begin
         instr_decoder_shift
     );
 
-    cpu_multicycle_controller: entity work.cpu_multicycle_controller port map (
+    controller: entity work.cpu_controller port map (
         clock,
 
         -- alu;
@@ -190,4 +184,5 @@ begin
         instr_decoder_DT_opcode,
         instr_decoder_shift
     );
+
 end cpu_multicycle_arch;
