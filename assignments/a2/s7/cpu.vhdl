@@ -22,6 +22,15 @@ architecture cpu_multicycle_arch of cpu is
     signal alu_ans : word;
     signal alu_flags_out : flags_t;
 
+    -- multiplier;
+    signal mult_op_m1 : word;
+    signal mult_op_m2 : word;
+    signal mult_op_a : dword;
+    signal mult_opcode : mul_t;
+    signal mult_flags_in : flags_t;
+    signal mult_flags_out : flags_t;
+    signal mult_ans : dword;
+
     -- regfile;
     signal regfile_r_addr_1 : nibble;
     signal regfile_r_addr_2 : nibble;
@@ -66,6 +75,7 @@ architecture cpu_multicycle_arch of cpu is
     signal instr_decoder_DP_opcode : DP_opcode_t;
     signal instr_decoder_condition : condition_t;
     signal instr_decoder_DT_opcode : DT_opcode_t;
+    signal instr_decoder_mul_opcode : mul_t;
     signal instr_decoder_shift : shift_t;
 begin
 
@@ -80,6 +90,15 @@ begin
         alu_ans,
         alu_flags_out,
 
+        -- multiplier;
+        mult_op_m1,
+        mult_op_m2,
+        mult_op_a,
+        mult_opcode,
+        mult_flags_in,
+        mult_flags_out,
+        mult_ans,
+
         -- regfile;
         regfile_r_addr_1,
         regfile_r_addr_2,
@@ -124,6 +143,7 @@ begin
         instr_decoder_DP_opcode,
         instr_decoder_condition,
         instr_decoder_DT_opcode,
+        instr_decoder_mul_opcode,
         instr_decoder_shift
     );
 
@@ -138,6 +158,15 @@ begin
         alu_ans,
         alu_flags_out,
 
+        -- multiplier;
+        mult_op_m1,
+        mult_op_m2,
+        mult_op_a,
+        mult_opcode,
+        mult_flags_in,
+        mult_flags_out,
+        mult_ans,
+
         -- regfile;
         regfile_r_addr_1,
         regfile_r_addr_2,
@@ -182,6 +211,7 @@ begin
         instr_decoder_DP_opcode,
         instr_decoder_condition,
         instr_decoder_DT_opcode,
+        instr_decoder_mul_opcode,
         instr_decoder_shift
     );
 

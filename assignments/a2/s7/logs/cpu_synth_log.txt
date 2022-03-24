@@ -1,3 +1,4 @@
+[2022-03-24 11:59:05 UTC] precision -shell -file run.do -fileargs "design.vhd"  
 precision: Setting MGC_HOME to /usr/share/precision/Mgc_home ...
 precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Source)  -- 5.4.0-100-generic -- x86_64 
 //  Precision RTL Synthesis 64-bit 2021.1.0.4 (Production Release) Tue Jul 20 01:22:31 PDT 2021
@@ -8,9 +9,9 @@ precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Sou
 //            CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
 //          PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
 //  
-//  Running on Linux runner@403352016ab1 #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 5.4.0-100-generic x86_64
+//  Running on Linux runner@5863e13ba6df #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 5.4.0-100-generic x86_64
 //  
-//  Start time Sat Mar 19 08:23:31 2022
+//  Start time Thu Mar 24 07:59:06 2022
 # -------------------------------------------------
 # Info: [9569]: Logging session transcript to file /home/runner/precision.log
 # Warning: [9508]: Results directory is not set. Use new_project, open_project, or set_results_dir.
@@ -37,6 +38,10 @@ precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Sou
 # Info: [40000]: Files sorted successfully.
 # Info: [40000]: hdl-analyze, Release RTLC-Precision 2021a.12
 # Info: [42502]: Analyzing input file "/home/runner/design.vhd" ...
+# Warning: [15262]: Multiple tops found: mux
+# Info:      mux_2
+# Info:      sign_extender
+# Info:      cpu
 # Info: [670]: Top module of the design is set to: cpu.
 # Info: [668]: Current working directory: /home/runner/impl_1.
 # Info: [40000]: RTLC-Driver, Release RTLC-Precision 2021a.12
@@ -47,123 +52,149 @@ precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Sou
 # Info: [40000]: Last compiled on Jul  2 2021 08:49:53
 # Info: [44512]: Initializing...
 # Info: [44522]: Root Module work.cpu(cpu_multicycle_arch){generic map (...)}: Pre-processing...
-# Info: [45143]: "/home/runner/design.vhd", line 23: Enumerated type DT_type with 8 elements encoded as onehot.
-# Info: [45144]: Encodings for DT_type values.
-# Info: [40000]: value                                                         DT_type[7-0]
-# Info: [40000]: ldr                                                          00000001
-# Info: [40000]: str                                                          00000010
-# Info: [40000]: ldrb                                                         00000100
-# Info: [40000]: strb                                                         00001000
-# Info: [40000]: ldrh                                                         00010000
-# Info: [40000]: strh                                                         00100000
-# Info: [40000]: ldrsh                                                        01000000
-# Info: [40000]: ldrsb                                                        10000000
-# Info: [44506]: Module work.cpu_multicycle_datapath(cpu_multicycle_datapath_arc){generic map (...)}: Pre-processing...
-# Info: [44506]: Module work.reg(reg_arc){generic map (size => 32)}: Pre-processing...
-# Info: [44506]: Module work.mux_2(mux_2_arc){generic map (size => 32)}: Pre-processing...
-# Info: [44506]: Module work.memory(memory_arc){generic map (...)}: Pre-processing...
-# Info: [45251]: Built-in hardware memory core inferred for variable ': memory.ram depth = 128, width = 32'.
-# Info: [44506]: Module work.mux_2(mux_2_arc){generic map (size => 4)}: Pre-processing...
+# Info: [45143]: "/home/runner/design.vhd", line 28: Enumerated type DP_opcode_t with 16 elements encoded as onehot.
+# Info: [45144]: Encodings for DP_opcode_t values.
+# Info: [40000]: value                                                     DP_opcode_t[15-0]
+# Info: [40000]: ANDOP                                                0000000000000001
+# Info: [40000]: EOR                                                  0000000000000010
+# Info: [40000]: SUB                                                  0000000000000100
+# Info: [40000]: RSB                                                  0000000000001000
+# Info: [40000]: ADD                                                  0000000000010000
+# Info: [40000]: ADC                                                  0000000000100000
+# Info: [40000]: SBC                                                  0000000001000000
+# Info: [40000]: RSC                                                  0000000010000000
+# Info: [40000]: TST                                                  0000000100000000
+# Info: [40000]: TEQ                                                  0000001000000000
+# Info: [40000]: CMP                                                  0000010000000000
+# Info: [40000]: CMN                                                  0000100000000000
+# Info: [40000]: ORR                                                  0001000000000000
+# Info: [40000]: MOV                                                  0010000000000000
+# Info: [40000]: BIC                                                  0100000000000000
+# Info: [40000]: MVN                                                  1000000000000000
+# Info: [45143]: "/home/runner/design.vhd", line 32: Enumerated type mul_t with 6 elements encoded as onehot.
+# Info: [45144]: Encodings for mul_t values.
+# Info: [40000]: value                                                           mul_t[5-0]
+# Info: [40000]: MUL                                                            000001
+# Info: [40000]: MLA                                                            000010
+# Info: [40000]: UMULL                                                          000100
+# Info: [40000]: UMLAL                                                          001000
+# Info: [40000]: SMULL                                                          010000
+# Info: [40000]: SMLAL                                                          100000
+# Info: [45143]: "/home/runner/design.vhd", line 30: Enumerated type DT_opcode_t with 8 elements encoded as onehot.
+# Info: [45144]: Encodings for DT_opcode_t values.
+# Info: [40000]: value                                                     DT_opcode_t[7-0]
+# Info: [40000]: LDR                                                          00000001
+# Info: [40000]: STR                                                          00000010
+# Info: [40000]: LDRB                                                         00000100
+# Info: [40000]: STRB                                                         00001000
+# Info: [40000]: LDRH                                                         00010000
+# Info: [40000]: STRH                                                         00100000
+# Info: [40000]: LDRSH                                                        01000000
+# Info: [40000]: LDRSB                                                        10000000
+# Info: [45143]: "/home/runner/design.vhd", line 29: Enumerated type condition_t with 15 elements encoded as onehot.
+# Info: [45144]: Encodings for condition_t values.
+# Info: [40000]: value                                                     condition_t[14-0]
+# Info: [40000]: EQ                                                    000000000000001
+# Info: [40000]: NE                                                    000000000000010
+# Info: [40000]: HS                                                    000000000000100
+# Info: [40000]: LO                                                    000000000001000
+# Info: [40000]: MI                                                    000000000010000
+# Info: [40000]: PL                                                    000000000100000
+# Info: [40000]: VS                                                    000000001000000
+# Info: [40000]: VC                                                    000000010000000
+# Info: [40000]: HI                                                    000000100000000
+# Info: [40000]: LS                                                    000001000000000
+# Info: [40000]: GE                                                    000010000000000
+# Info: [40000]: LT                                                    000100000000000
+# Info: [40000]: GT                                                    001000000000000
+# Info: [40000]: LE                                                    010000000000000
+# Info: [40000]: AL                                                    100000000000000
+# Info: [45143]: "/home/runner/design.vhd", line 27: Enumerated type instruction_t with 12 elements encoded as onehot.
+# Info: [45144]: Encodings for instruction_t values.
+# Info: [40000]: value                                                   instruction_t[11-0]
+# Info: [40000]: DP_IMM_SHIFT                                             000000000001
+# Info: [40000]: DP_REG_SHIFT                                             000000000010
+# Info: [40000]: DP_IMM                                                   000000000100
+# Info: [40000]: MUL_32                                                   000000001000
+# Info: [40000]: MUL_64                                                   000000010000
+# Info: [40000]: DT_IMM                                                   000000100000
+# Info: [40000]: DT_REG                                                   000001000000
+# Info: [40000]: DT_HW_IMM                                                000010000000
+# Info: [40000]: DT_HW_REG                                                000100000000
+# Info: [40000]: LDR_SIGNED_REG                                           001000000000
+# Info: [40000]: LDR_SIGNED_IMM                                           010000000000
+# Info: [40000]: BRANCH                                                   100000000000
+# Info: [44506]: Module work.cpu_datapath(cpu_datapath_arc){generic map (...)}: Pre-processing...
+# Info: [44506]: Module work.alu(alu_bvr): Pre-processing...
 # Info: [44506]: Module work.regfile(regfile_bvr): Pre-processing...
 # Info: [45251]: Built-in hardware memory core inferred for variable ': regfile.regs depth = 16, width = 32'.
-# Info: [44506]: Module work.mux_2(mux_2_arc){generic map (size => 5)}: Pre-processing...
-# Info: [44506]: Module work.mux_2(mux_2_arc){generic map (size => 8)}: Pre-processing...
-# Info: [44506]: Module work.shifter(shifter_arc): Pre-processing...
+# Info: [44506]: Module work.memory(memory_arc){generic map (...)}: Pre-processing...
+# Info: [45251]: Built-in hardware memory core inferred for variable ': memory.ram depth = 128, width = 32'.
 # Info: [44506]: Module work.pmconnect(pmconnect_arc): Pre-processing...
-# Info: [44506]: Module work.sign_extender(sign_extender_arc){generic map (in_size => 12 out_size => 32)}: Pre-processing...
-# Info: [44506]: Module work.sign_extender(sign_extender_arc){generic map (in_size => 24 out_size => 32)}: Pre-processing...
-# Info: [44506]: Module work.mux(mux_arc){generic map (size => 4 select_signal_size => 2)}: Pre-processing...
-# Info: [44506]: Module work.alu(alu_bvr): Pre-processing...
-# Info: [44506]: Module work.reg(reg_arc){generic map (size => 4)}: Pre-processing...
+# Info: [44506]: Module work.shifter(shifter_arc): Pre-processing...
 # Info: [44506]: Module work.predicator(predicator_arc): Pre-processing...
-# Info: [44506]: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc): Pre-processing...
-# Info: [45143]: "/home/runner/design.vhd", line 652: Enumerated type fsm_state with 10 elements encoded as onehot.
+# Info: [44506]: Module work.instr_decoder(instr_decoder_arc): Pre-processing...
+# Info: [44506]: Module work.multiplier(multiplier_arc): Pre-processing...
+# Info: [44506]: Module work.cpu_controller(cpu_controller_arc){generic map (...)}: Pre-processing...
+# Info: [45143]: "/home/runner/design.vhd", line 671: Enumerated type fsm_state with 14 elements encoded as onehot.
 # Info: [45144]: Encodings for fsm_state values.
-# Info: [40000]: value                                                       fsm_state[9-0]
-# Info: [40000]: fetch                                                      0000000001
-# Info: [40000]: decode                                                     0000000010
-# Info: [40000]: shift                                                      0000000100
-# Info: [40000]: execute_dp                                                 0000001000
-# Info: [40000]: writeback_dp                                               0000010000
-# Info: [40000]: execute_dt                                                 0000100000
-# Info: [40000]: writeback_dt_str                                           0001000000
-# Info: [40000]: load_dt_ldr                                                0010000000
-# Info: [40000]: writeback_dt_ldr                                           0100000000
-# Info: [40000]: execute_b                                                  1000000000
-# Info: [45144]: Extracted FSM in module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), with state variable = curr_state[9:0], async set/reset state(s) = (none), number of states = 10.
-# Info: [45144]: Re-encoding 10 state FSM as "onehot".
-# Info: [45144]: FSM: State encoding table.
-# Info: [40000]: FSM:   Index              State Name                               Literal                       Encoding
-# Info: [40000]: FSM:       0                   fetch                            0000000001                     0000000001
-# Info: [40000]: FSM:       1                  decode                            0000000010                     0000000010
-# Info: [40000]: FSM:       2                   shift                            0000000100                     0000000100
-# Info: [40000]: FSM:       3              execute_dp                            0000001000                     0000001000
-# Info: [40000]: FSM:       4            writeback_dp                            0000010000                     0000010000
-# Info: [40000]: FSM:       5              execute_dt                            0000100000                     0000100000
-# Info: [40000]: FSM:       6        writeback_dt_str                            0001000000                     0001000000
-# Info: [40000]: FSM:       7             load_dt_ldr                            0010000000                     0010000000
-# Info: [40000]: FSM:       8        writeback_dt_ldr                            0100000000                     0100000000
-# Info: [40000]: FSM:       9               execute_b                            1000000000                     1000000000
-# Warning: [45729]: "/home/runner/design.vhd", line 134: Input port addr[31:9] has never been used.
-# Warning: [45729]: "/home/runner/design.vhd", line 134: Input port addr[1:0] has never been used.
-# Warning: [45729]: "/home/runner/design.vhd", line 529: signal branch_addr_shift has never been used.
-# Warning: [45729]: "/home/runner/design.vhd", line 642: Input port instruction[19:12] has never been used.
-# Warning: [45729]: "/home/runner/design.vhd", line 642: Input port instruction[3:0] has never been used.
-# Warning: [45729]: "/home/runner/design.vhd", line 643: Input port shifter_carry_out has never been used.
-# Warning: [45729]: "/home/runner/design.vhd", line 644: Input port alu_flags_out has never been used.
-# Warning: [45729]: "/home/runner/design.vhd", line 646: Input port flags[3] has never been used.
-# Warning: [45729]: "/home/runner/design.vhd", line 646: Input port flags[1:0] has never been used.
-# Info: [44508]: Module work.reg(reg_arc){generic map (size => 32)}: Compiling...
-# Info: [44508]: Module work.mux_2(mux_2_arc){generic map (size => 32)}: Compiling...
-# Info: [44508]: Module work.memory(memory_arc){generic map (...)}: Compiling...
-# Warning: [45784]: "/home/runner/design.vhd", line 159: Module work.memory(memory_arc){generic map (...)}, Net(s) addr[8:2]: Although this signal is not part of the sensitivity list of this block, it is being read. This may lead to simulation mismatch.
-# Info: [44508]: Module work.mux_2(mux_2_arc){generic map (size => 4)}: Compiling...
-# Info: [44508]: Module work.regfile(regfile_bvr): Compiling...
-# Info: [44508]: Module work.mux_2(mux_2_arc){generic map (size => 5)}: Compiling...
-# Info: [44508]: Module work.mux_2(mux_2_arc){generic map (size => 8)}: Compiling...
-# Info: [44508]: Module work.shifter(shifter_arc): Compiling...
-# Warning: [45784]: "/home/runner/design.vhd", line 255: Module work.shifter(shifter_arc), Net(s) carry_in: Although this signal is not part of the sensitivity list of this block, it is being read. This may lead to simulation mismatch.
-# Info: [44508]: Module work.pmconnect(pmconnect_arc): Compiling...
-# Info: [44508]: Module work.sign_extender(sign_extender_arc){generic map (in_size => 12 out_size => 32)}: Compiling...
-# Info: [44508]: Module work.sign_extender(sign_extender_arc){generic map (in_size => 24 out_size => 32)}: Compiling...
-# Info: [44508]: Module work.mux(mux_arc){generic map (size => 4 select_signal_size => 2)}: Compiling...
+# Info: [40000]: value                                                       fsm_state[13-0]
+# Info: [40000]: fetch                                                  00000000000001
+# Info: [40000]: decode                                                 00000000000010
+# Info: [40000]: shift                                                  00000000000100
+# Info: [40000]: execute_dp                                             00000000001000
+# Info: [40000]: writeback_dp                                           00000000010000
+# Info: [40000]: execute_dt                                             00000000100000
+# Info: [40000]: execute_b                                              00000001000000
+# Info: [40000]: writeback_dt_ldr                                       00000010000000
+# Info: [40000]: load_dt_ldr                                            00000100000000
+# Info: [40000]: writeback_dt_str                                       00001000000000
+# Info: [40000]: execute_mul                                            00010000000000
+# Info: [40000]: writeback_mul32                                        00100000000000
+# Info: [40000]: writeback_mul64_lo                                     01000000000000
+# Info: [40000]: writeback_mul64_hi                                     10000000000000
+# Info: [44506]: Module work.reg(reg_arc){generic map (size => 32)}: Pre-processing...
+# Warning: [45729]: "/home/runner/design.vhd", line 499: Input port flags_in_negative has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 499: Input port flags_in_zero has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 499: Input port flags_in_overflow has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 359: Input port addr[31:9] has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 359: Input port addr[1:0] has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 407: Input port instruction[19:8] has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 407: Input port instruction[3:0] has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 546: Input port flags_in has never been used.
+# Warning: [45731]: "/home/runner/design.vhd", line 547: Output port flags_out has never been assigned a value.
+# Warning: [45729]: "/home/runner/design.vhd", line 605: Input port mult_flags_out has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 637: Input port shifter_carry_out has never been used.
+# Warning: [45729]: "/home/runner/design.vhd", line 659: signal instruction[31:25] has never been used.
 # Info: [44508]: Module work.alu(alu_bvr): Compiling...
-# Info: [44508]: Module work.reg(reg_arc){generic map (size => 4)}: Compiling...
+# Info: [44508]: Module work.regfile(regfile_bvr): Compiling...
+# Info: [44508]: Module work.memory(memory_arc){generic map (...)}: Compiling...
+# Warning: [45784]: "/home/runner/design.vhd", line 376: Module work.memory(memory_arc){generic map (...)}, Net(s) addr[8:2]: Although this signal is not part of the sensitivity list of this block, it is being read. This may lead to simulation mismatch.
+# Info: [44508]: Module work.pmconnect(pmconnect_arc): Compiling...
+# Info: [44508]: Module work.shifter(shifter_arc): Compiling...
+# Warning: [45784]: "/home/runner/design.vhd", line 277: Module work.shifter(shifter_arc), Net(s) carry_in: Although this signal is not part of the sensitivity list of this block, it is being read. This may lead to simulation mismatch.
 # Info: [44508]: Module work.predicator(predicator_arc): Compiling...
-# Info: [44508]: Module work.cpu_multicycle_datapath(cpu_multicycle_datapath_arc){generic map (...)}: Compiling...
-# Info: [44508]: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc): Compiling...
-# Warning: [45784]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) prediction, flags[2]: Although this signal is not part of the sensitivity list of this block, it is being read. This may lead to simulation mismatch.
+# Info: [44508]: Module work.instr_decoder(instr_decoder_arc): Compiling...
+# Info: [44508]: Module work.multiplier(multiplier_arc): Compiling...
+# Info: [44508]: Module work.cpu_datapath(cpu_datapath_arc){generic map (...)}: Compiling...
+# Info: [44508]: Module work.reg(reg_arc){generic map (size => 32)}: Compiling...
+# Info: [44508]: Module work.cpu_controller(cpu_controller_arc){generic map (...)}: Compiling...
+# Warning: [45702]: "/home/runner/design.vhd", line 674: Initial value for curr_state[13:0] is ignored for synthesis. To allow initial value for synthesis, please set the attribute "allow_init_val" in HDL or enable the global support for initial value synthesis through "compile_initial_values" switch.
+# Info: [44812]: "/home/runner/design.vhd", line 604: Sharing register mult_flags_in_overflow with predicator_flags_in_overflow
+# Info: [44812]: "/home/runner/design.vhd", line 604: Sharing register mult_flags_in_carry with predicator_flags_in_carry
+# Info: [44812]: "/home/runner/design.vhd", line 604: Sharing register mult_flags_in_zero with predicator_flags_in_zero
+# Info: [44812]: "/home/runner/design.vhd", line 604: Sharing register mult_flags_in_negative with predicator_flags_in_negative
 # Info: [44523]: Root Module work.cpu(cpu_multicycle_arch){generic map (...)}: Compiling...
-# Warning: [45741]: "/home/runner/design.vhd", line 973: FSM state variable 'curr_state' doesn't have asynchronous or synchronous set/reset condition.
-# Warning: [45741]: "/home/runner/design.vhd", line 973: FSM state variable 'curr_state' doesn't have asynchronous or synchronous set/reset condition.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_alu_opcode[3:0]: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_alu_c_in: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_alu_op_mux: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_alu_shift_op_mux[1:0]: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_regfile_w_en: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_regfile_w_data: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_regfile_r_addr_1: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_regfile_r_addr_2: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_shift_amt: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_shifter_in: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_rot_imm: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_shifter_carry_in: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_shift_type[1:0]: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_offset_type: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_pmc_instr[7:0]: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_pmc_en: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_mem_ad_mux: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_ir_write: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_dr_write: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_pc_write: Latch inferred.
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_flag_set: Latch inferred.
-# Info: [45309]: "/home/runner/design.vhd", line 658: Optimizing state bit(s) ctrl_flags[3:0] to constant 0
-# Info: [45205]: "/home/runner/design.vhd", line 658: Module work.cpu_multicycle_controller(cpu_multicycle_controller_arc), Net(s) ctrl_predict_cond[3:0]: Latch inferred.
+# Info: [45193]: "/home/runner/design.vhd", line 660: Net flags_carry is unused after optimization
+# Info: [45193]: "/home/runner/design.vhd", line 668: Net dr_en is unused after optimization
+# Info: [45193]: "/home/runner/design.vhd", line 668: Net res_hi_en is unused after optimization
+# Info: [45193]: "/home/runner/design.vhd", line 668: Net res_en is unused after optimization
+# Info: [45193]: "/home/runner/design.vhd", line 669: Net pc_en is unused after optimization
 # Info: [44846]: Rebalanced Expression Tree...
 # Info: [44842]: Compilation successfully completed.
-# Info: [44856]: Total lines of RTL compiled: 1225.
-# Info: [44835]: Total CPU time for compilation: 0.0 secs.
-# Info: [44513]: Overall running time for compilation: 1.0 secs.
+# Info: [44856]: Total lines of RTL compiled: 1036.
+# Info: [44835]: Total CPU time for compilation: 1.0 secs.
+# Info: [44513]: Overall running time for compilation: 2.0 secs.
 # Info: [668]: Current working directory: /home/runner/impl_1.
 # Info: [15334]: Doing rtl optimizations.
 # Info: [671]: Finished compiling design.
@@ -179,7 +210,7 @@ precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Sou
 # Info: -- Writing file /home/runner/impl_1/cpu.tcl
 # Info: [671]: Finished synthesizing design.
 # Info: [11019]: Total CPU time for synthesis: 0.1 s secs.
-# Info: [11020]: Overall running time for synthesis: 0.1 s secs.
+# Info: [11020]: Overall running time for synthesis: 0.2 s secs.
 # Info: /home/runner/impl_1/precision_tech.sdc
 # Info: [3027]: Writing file: /home/runner/precision.v.
 # Info: -- Writing file /home/runner/impl_1/cpu.tcl

@@ -11,6 +11,7 @@ entity instr_decoder is
         DP_opcode : out DP_opcode_t;
         condition : out condition_t;
         DT_opcode : out DT_opcode_t;
+        mul_opcode: out mul_t;
         shift : out shift_t
     );
 end instr_decoder;
@@ -19,6 +20,8 @@ architecture instr_decoder_arc of instr_decoder is
 begin
 
     instruction_class <= DP_IMM_SHIFT when instruction(27 downto 25) = "000" and instruction(4) = '0' else
+                         MUL_32 when instruction(27 downto 22) = "000000" and instruction(7 downto 4) = "1001" else
+                         MUL_64 when instruction(27 downto 23) = "00001" and instruction(7 downto 4) = "1001" else
                          DT_HW_IMM when instruction(27 downto 25) = "000" and instruction(22) = '1' and instruction(7 downto 4) = "1011" else
                          DT_HW_REG when instruction(27 downto 25) = "000" and instruction(22) = '0' and instruction(7 downto 4) = "1011" else
                          LDR_SIGNED_REG when instruction(27 downto 25) = "000" and instruction(22) = '0' and instruction(20) = '1' and instruction(7 downto 6) = "11" and instruction(4) = '1' else
@@ -70,6 +73,13 @@ begin
                  STRH when instruction(27 downto 25) = "000" and instruction(20) = '0' else
                  LDRSH when instruction(27 downto 25) = "000" and instruction(20) = '1' and instruction(6) = '1' and instruction(5) = '1' else
                  LDRSB;
+
+    mul_opcode <= MUL when instruction(27 downto 21) = "0000000" and instruction(7 downto 4) = "1001" else
+                  MLA when instruction(27 downto 21) = "0000001" and instruction(7 downto 4) = "1001" else
+                  UMULL when instruction(27 downto 21) = "0000100" and instruction(7 downto 4) = "1001" else
+                  SMULL when instruction(27 downto 21) = "0000110" and instruction(7 downto 4) = "1001" else
+                  UMLAL when instruction(27 downto 21) = "0000101" and instruction(7 downto 4) = "1001" else
+                  SMLAL;
 
     shift <= LS_LEFT when instruction(6 downto 5) = "00" else 
              LS_RIGHT when instruction(6 downto 5) = "01" else 

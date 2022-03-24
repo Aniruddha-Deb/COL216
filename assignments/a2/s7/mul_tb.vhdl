@@ -11,18 +11,17 @@ architecture cpu_tb_arc of cpu_tb is
     signal clock: std_logic := '0';
     constant clock_period: time := 2 ns;
     signal memory: mem(127 downto 0) := (
-        0 => X"E3A00060",
-        1 => X"E3A010AD",
-        2 => X"E3811CDE",
-        3 => X"E38118FE",
-        4 => X"E38114CA",
-        5 => X"E3A02004",
-        6 => X"E5A01004",
-        7 => X"E7A01002",
-        8 => X"E7201082",
-        9 => X"E280000C",
-        10 => X"E4801004",
-        11 => X"E6801082",
+        0 => X"E3A00003",
+        1 => X"E3A01002",
+        2 => X"E0020091",
+        3 => X"E0230192",
+        4 => X"E3A0020F",
+        5 => X"E3A01004",
+        6 => X"E0823091",
+        7 => X"E0A23091",
+        8 => X"E3E00001",
+        9 => X"E0C23091",
+        10 => X"E0E23091",
         others => X"00000000" );
 begin
     uut: entity work.cpu generic map (memory) port map (clock);

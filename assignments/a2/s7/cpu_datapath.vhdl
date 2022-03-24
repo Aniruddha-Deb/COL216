@@ -21,6 +21,15 @@ entity cpu_datapath is
         alu_ans : out word;
         alu_flags_out : out flags_t;
 
+        -- multiplier;
+        mult_op_m1: in word;
+        mult_op_m2: in word;
+        mult_op_a: in dword;
+        mult_opcode: in mul_t;
+        mult_flags_in: in flags_t;
+        mult_flags_out: out flags_t;
+        mult_ans: out dword;
+
         -- regfile;
         regfile_r_addr_1 : in nibble;
         regfile_r_addr_2 : in nibble;
@@ -65,6 +74,7 @@ entity cpu_datapath is
         instr_decoder_DP_opcode : out DP_opcode_t;
         instr_decoder_condition : out condition_t;
         instr_decoder_DT_opcode : out DT_opcode_t;
+        instr_decoder_mul_opcode : out mul_t;
         instr_decoder_shift : out shift_t
     );
 end cpu_datapath;
@@ -78,6 +88,7 @@ begin
     pmconnect: entity work.pmconnect port map (pmconnect_Rout, pmconnect_Rin, pmconnect_dt_opcode, pmconnect_enable, pmconnect_adr, pmconnect_Min, pmconnect_Mout, pmconnect_MW);
     shifter: entity work.shifter port map (shifter_shifter_in, shifter_shifter_out, shifter_carry_in, shifter_carry_out, shifter_shift_type, shifter_shift_amt);
     predicator: entity work.predicator port map (predicator_condition, predicator_flags_in, predicator_p);
-    instr_decoder: entity work.instr_decoder port map (instr_decoder_instruction, instr_decoder_instruction_class, instr_decoder_DP_opcode, instr_decoder_condition, instr_decoder_DT_opcode, instr_decoder_shift);
+    instr_decoder: entity work.instr_decoder port map (instr_decoder_instruction, instr_decoder_instruction_class, instr_decoder_DP_opcode, instr_decoder_condition, instr_decoder_DT_opcode, instr_decoder_mul_opcode, instr_decoder_shift);
+    multiplier: entity work.multiplier port map (mult_op_m1, mult_op_m2, mult_op_a, mult_opcode, mult_flags_in, mult_flags_out, mult_ans);
 
 end cpu_datapath_arc;
