@@ -80,7 +80,7 @@ end cpu_controller;
 architecture cpu_controller_arc of cpu_controller is
 
     signal instruction: word;
-    signal flags: flags_t;
+    signal flags: flags_t := (usermode => '0', others => '0');
 
     type regdata is record
         r_in: word;
@@ -94,7 +94,7 @@ architecture cpu_controller_arc of cpu_controller is
     type fsm_state is (fetch, decode, shift, execute_dp, writeback_dp, 
         execute_dt, execute_b, writeback_dt_ldr, load_dt_ldr, writeback_dt_str,
         execute_mul, writeback_mul32, writeback_mul64_hi, writeback_mul64_lo,
-        execute_swi);
+        execute_swi, execute_rfe);
 
     signal curr_state: fsm_state := fetch;
 
@@ -108,7 +108,17 @@ begin
     reg_res: entity work.reg port map (res.r_in, res.r_out, res.en, clock);
     reg_pc: entity work.reg port map (pc.r_in, pc.r_out, pc.en, clock);
 
-    -- reserved space: 0x00000060 (byte 96 onwards).
+    -- Reset: 0x00
+    -- SWI: 0x08
+    -- SWI MemLoc: 0x0C
+    -- SWI ISR: 0x20
+    -- User program: 0x100
+
+    -- we use mov pc, lr for returning from normal mode, and rte for return to 
+    -- exception, since the protected mode programs won't be compiled by the 
+    -- ARM compiler, so it's ok to just write the instructions in there for SWI
+
+    -- start off in restricted user mode
 
     instruction <= ir.r_out;
 
@@ -150,17 +160,20 @@ begin
                         instruction(11 downto 8) when curr_state = decode and (instr_decoder_instruction_class = MUL_64 or instr_decoder_instruction_class = MUL_32) else
                         instruction(19 downto 16);
     regfile_r_addr_2 <= instruction(15 downto 12) when curr_state = writeback_dt_str or curr_state = execute_mul else
+                        "1110" when curr_state = execute_rfe else
                         instruction(3 downto 0);
                         -- HERE
     regfile_w_addr   <= instruction(19 downto 16) when (curr_state = writeback_dt_str or curr_state = load_dt_ldr) and (instruction(21) = '1' or (instruction(24) = '0' and instruction(21) = '0')) else
                         instruction(19 downto 16) when (curr_state = writeback_mul64_hi or curr_state = writeback_mul32) else
-                        "1110" when (curr_state = execute_b and instruction(24) = '1') else -- branch and link
+                        "1110" when (curr_state = execute_b and instruction(24) = '1') or curr_state = execute_swi else -- branch and link
                         instruction(15 downto 12);
     regfile_data_in  <= dr.r_out when curr_state = writeback_dt_ldr else 
+                        pc.r_out when curr_state = execute_swi else
                         res_hi.r_out when curr_state = writeback_mul64_hi else
                         pc.r_out when (curr_state = execute_b and instruction(24) = '1') else
                         res.r_out;
     regfile_w_en     <= predicator_p when (curr_state = writeback_dt_ldr) else
+                        '1' when (curr_state = execute_swi) else
                         predicator_p when (instr_decoder_instruction_class = DP_IMM or instr_decoder_instruction_class = DP_REG_SHIFT or instr_decoder_instruction_class = DP_IMM_SHIFT) and 
                                  (instr_decoder_DP_opcode /= CMP and instr_decoder_DP_opcode /= CMN and instr_decoder_DP_opcode /= TST and instr_decoder_DP_opcode /= TEQ) and curr_state = writeback_dp else
                         predicator_p when (curr_state = writeback_dt_str or curr_state = load_dt_ldr) and (instruction(21) = '1' or (instruction(24) = '0' and instruction(21) = '0')) else
@@ -201,7 +214,10 @@ begin
     predicator_flags_in <= flags when rising_edge(clock);
 
     -- set flags
-    flags <= alu_flags_out when instruction(20) = '1' and curr_state = execute_dp and (instr_decoder_instruction_class = DP_REG_SHIFT or instr_decoder_instruction_class = DP_IMM_SHIFT or instr_decoder_instruction_class = DP_IMM) and rising_edge(clock);
+    flags.negative <= alu_flags_out.negative when instruction(20) = '1' and curr_state = execute_dp and (instr_decoder_instruction_class = DP_REG_SHIFT or instr_decoder_instruction_class = DP_IMM_SHIFT or instr_decoder_instruction_class = DP_IMM) and rising_edge(clock);
+    flags.zero <= alu_flags_out.zero when instruction(20) = '1' and curr_state = execute_dp and (instr_decoder_instruction_class = DP_REG_SHIFT or instr_decoder_instruction_class = DP_IMM_SHIFT or instr_decoder_instruction_class = DP_IMM) and rising_edge(clock);
+    flags.carry <= alu_flags_out.carry when instruction(20) = '1' and curr_state = execute_dp and (instr_decoder_instruction_class = DP_REG_SHIFT or instr_decoder_instruction_class = DP_IMM_SHIFT or instr_decoder_instruction_class = DP_IMM) and rising_edge(clock);
+    flags.overflow <= alu_flags_out.overflow when instruction(20) = '1' and curr_state = execute_dp and (instr_decoder_instruction_class = DP_REG_SHIFT or instr_decoder_instruction_class = DP_IMM_SHIFT or instr_decoder_instruction_class = DP_IMM) and rising_edge(clock);
 
     -- instr_decoder;
     instr_decoder_instruction <= ir.r_out;
@@ -209,8 +225,10 @@ begin
     -- registers!
     -- pc
     pc.r_in <= res.r_out when curr_state = writeback_dp and (instr_decoder_instruction_class = DP_REG_SHIFT or instr_decoder_instruction_class = DP_IMM_SHIFT) and instruction(3 downto 0) = "1111" else
+               regfile_out_2 when curr_state = execute_rfe else
+               x"00000008" when curr_state = execute_swi else
                alu_ans(29 downto 0) & "00" ;
-    pc.en <= '1' when curr_state = fetch else 
+    pc.en <= '1' when curr_state = fetch or curr_state = execute_rfe or curr_state = execute_swi else 
              predicator_p when (curr_state = execute_b or curr_state = execute_swi) else 
              predicator_p when curr_state = writeback_dp and (instr_decoder_instruction_class = DP_REG_SHIFT or instr_decoder_instruction_class = DP_IMM_SHIFT) and instruction(3 downto 0) = "1111" else
              '0';
@@ -248,9 +266,13 @@ begin
                     curr_state <= execute_b;
                 elsif instr_decoder_instruction_class = SWI then
                     curr_state <= execute_swi;
+                    flags.usermode <= '0';
                 elsif instr_decoder_instruction_class = MUL_64 or 
                       instr_decoder_instruction_class = MUL_32 then
                     curr_state <= execute_mul;
+                elsif instr_decoder_instruction_class = RFE then
+                    curr_state <= execute_rfe;
+                    flags.usermode <= '1';
                 else
                     curr_state <= execute_dt; -- all dp instructions require use of the shifter
                 end if;

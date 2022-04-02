@@ -8,7 +8,8 @@ entity cpu is
         memory_defaults : mem(127 downto 0)
     );
     port (
-        clock: in std_logic
+        clock: in std_logic;
+        memory_input_data: in word
     );
 end cpu;
 
@@ -110,6 +111,7 @@ begin
 
         -- memory;
         memory_addr,
+        memory_input_data,
         memory_data_in,
         memory_w_en,
         memory_data_out,

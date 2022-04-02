@@ -16,10 +16,12 @@ all:
 	@ghdl -a cpu_controller.vhdl
 	@ghdl -a cpu.vhdl
 
+asm:
+	@./test_progs/gentest test_progs/swi_test.s swi_tb.vhdl
+
 test:
-	@./test_progs/gentest test_progs/cond_test.s cond_tb.vhdl
-	@ghdl -a cond_tb.vhdl
-	@ghdl -r cpu_tb --stop-time=120ns --wave=waves/cond_tb.ghw
+	@ghdl -a swi_tb.vhdl
+	@ghdl -r cpu_tb --stop-time=120ns --wave=waves/swi_tb.ghw
 
 clean:
 	rm work-obj93.cf

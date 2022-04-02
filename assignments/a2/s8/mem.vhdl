@@ -14,6 +14,7 @@ entity memory is
     port (
         clock : in std_logic;
         addr : in word; -- byte addressed
+        input_data: in word;
         data_in: in word;
         w_en   : in nibble; -- one hot byte write encoding
         data_out : out word
@@ -27,7 +28,11 @@ begin
         variable word_addr: integer;
     begin
         word_addr := to_integer(unsigned(addr(8 downto 2)));
-        data_out <= ram(word_addr); 
+        if word_addr = 3 then 
+            data_out <= input_data;
+        else
+            data_out <= ram(word_addr); 
+        end if;
     end process read;
 
     write: process(clock, w_en)
@@ -35,7 +40,7 @@ begin
     begin
         word_addr := to_integer(unsigned(addr(8 downto 2)));
         -- the write enable tells which bits to write to the vector
-        if rising_edge(clock) then
+        if rising_edge(clock) and word_addr /= 3 then
             if w_en(0) = '1' then
                 ram(word_addr)(7 downto 0) <= data_in(7 downto 0);
             end if;

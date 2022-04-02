@@ -41,6 +41,7 @@ entity cpu_datapath is
 
         -- memory;
         memory_addr : in word;
+        memory_input_data : in word;
         memory_data_in : in word;
         memory_w_en : in nibble;
         memory_data_out : out word;
@@ -84,7 +85,7 @@ begin
 
     alu: entity work.alu port map (alu_shift_op, alu_op, alu_flags_in, alu_opcode, alu_ans, alu_flags_out);
     regfile: entity work.regfile port map (regfile_r_addr_1, regfile_r_addr_2, regfile_w_addr, regfile_data_in, regfile_w_en, clock, regfile_out_1, regfile_out_2);
-    memory: entity work.memory generic map (memory_defaults) port map (clock, memory_addr, memory_data_in, memory_w_en, memory_data_out);
+    memory: entity work.memory generic map (memory_defaults) port map (clock, memory_addr, memory_input_data, memory_data_in, memory_w_en, memory_data_out);
     pmconnect: entity work.pmconnect port map (pmconnect_Rout, pmconnect_Rin, pmconnect_dt_opcode, pmconnect_enable, pmconnect_adr, pmconnect_Min, pmconnect_Mout, pmconnect_MW);
     shifter: entity work.shifter port map (shifter_shifter_in, shifter_shifter_out, shifter_carry_in, shifter_carry_out, shifter_shift_type, shifter_shift_amt);
     predicator: entity work.predicator port map (predicator_condition, predicator_flags_in, predicator_p);

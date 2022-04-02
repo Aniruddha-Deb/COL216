@@ -25,7 +25,7 @@ package MyTypes is
         usermode: std_logic;
     end record flags_t;
 
-    type instruction_t is (DP_IMM_SHIFT, DP_REG_SHIFT, DP_IMM, MUL_32, MUL_64, DT_IMM, DT_REG, DT_HW_IMM, DT_HW_REG, LDR_SIGNED_REG, LDR_SIGNED_IMM, SWI, BRANCH);
+    type instruction_t is (DP_IMM_SHIFT, DP_REG_SHIFT, DP_IMM, MUL_32, MUL_64, DT_IMM, DT_REG, DT_HW_IMM, DT_HW_REG, LDR_SIGNED_REG, LDR_SIGNED_IMM, SWI, BRANCH, RFE);
     type DP_opcode_t is (ANDOP, EOR, SUB, RSB, ADD, ADC, SBC, RSC, TST, TEQ, CMP, CMN, ORR, MOV, BIC, MVN);
     type condition_t is (EQ, NE, HS, LO, MI, PL, VS, VC, HI, LS, GE, LT, GT, LE, AL);
     type DT_opcode_t is (LDR, STR, LDRB, STRB, LDRH, STRH, LDRSH, LDRSB);

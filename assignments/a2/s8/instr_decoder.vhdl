@@ -19,7 +19,8 @@ end instr_decoder;
 architecture instr_decoder_arc of instr_decoder is
 begin
 
-    instruction_class <= DP_IMM_SHIFT when instruction(27 downto 25) = "000" and instruction(4) = '0' else
+    instruction_class <= RFE when instruction = x"E6000011" else
+                         DP_IMM_SHIFT when instruction(27 downto 25) = "000" and instruction(4) = '0' else
                          MUL_32 when instruction(27 downto 22) = "000000" and instruction(7 downto 4) = "1001" else
                          MUL_64 when instruction(27 downto 23) = "00001" and instruction(7 downto 4) = "1001" else
                          DT_HW_IMM when instruction(27 downto 25) = "000" and instruction(22) = '1' and instruction(7 downto 4) = "1011" else

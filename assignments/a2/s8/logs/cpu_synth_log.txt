@@ -1,4 +1,4 @@
-[2022-03-24 11:59:05 UTC] precision -shell -file run.do -fileargs "design.vhd"  
+[2022-04-02 17:05:16 UTC] precision -shell -file run.do -fileargs "design.vhd"  
 precision: Setting MGC_HOME to /usr/share/precision/Mgc_home ...
 precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Source)  -- 5.4.0-100-generic -- x86_64 
 //  Precision RTL Synthesis 64-bit 2021.1.0.4 (Production Release) Tue Jul 20 01:22:31 PDT 2021
@@ -11,7 +11,7 @@ precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Sou
 //  
 //  Running on Linux runner@5863e13ba6df #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 5.4.0-100-generic x86_64
 //  
-//  Start time Thu Mar 24 07:59:06 2022
+//  Start time Sar Apr 02 17:05:16 2022
 # -------------------------------------------------
 # Info: [9569]: Logging session transcript to file /home/runner/precision.log
 # Warning: [9508]: Results directory is not set. Use new_project, open_project, or set_results_dir.
@@ -254,10 +254,74 @@ precision: Executing on platform: Derived from Red Hat Enterprise Linux 7.1 (Sou
 # Info:  IO Register Mapping Report
 # Info: *****************************
 # Info: Design: work.cpu.cpu_multicycle_arch
-# Info: +----------+-----------+----------+----------+----------+
-# Info: | Port     | Direction |   INFF   |  OUTFF   |  TRIFF   |
-# Info: +----------+-----------+----------+----------+----------+
-# Info: | clock    | Input     |          |          |          |
-# Info: +----------+-----------+----------+----------+----------+
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | Port                    | Direction |   INFF   |  OUTFF   |  TRIFF   |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | clock                   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(31)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(30)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(29)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(28)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(27)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(26)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(25)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(24)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(23)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(22)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(21)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(20)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(19)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(18)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(17)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(16)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(15)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(14)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(13)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(12)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(11)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(10)   | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(9)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(8)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(7)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(6)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(5)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(4)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(3)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(2)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(1)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
+# Info: | memory_input_data(0)    | Input     |          |          |          |
+# Info: +-------------------------+-----------+----------+----------+----------+
 # Info: Total registers mapped: 0
 # Info: [12022]: Design has no timing constraint and no timing information.

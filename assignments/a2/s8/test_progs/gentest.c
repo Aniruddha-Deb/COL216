@@ -17,10 +17,18 @@ char* header =
 "architecture cpu_tb_arc of cpu_tb is\n"
 "    signal clock: std_logic := '0';\n"
 "    constant clock_period: time := 2 ns;\n"
-"    signal memory: mem(127 downto 0) := (\n";
+"    signal input_data: word;\n"
+"    signal memory: mem(127 downto 0) := (\n"
+"        0 => X\"E3A0EC01\",\n"
+"        1 => X\"E6000011\",\n"
+"        2 => X\"EA000000\",\n"
+"        3 => X\"00000000\",\n"
+"        4 => X\"E3A0000C\",\n"
+"        5 => X\"E5900000\",\n"
+"        6 => X\"E6000011\",\n";
 
 char* footer = "begin\n"
-"    uut: entity work.cpu generic map (memory) port map (clock);\n"
+"    uut: entity work.cpu generic map (memory) port map (clock, input_data);\n"
 "\n"
 "    clock <= not clock after clock_period/2;\n"
 "\n"
@@ -75,7 +83,7 @@ int main(int argc, char** argv) {
 
     // compiled as an ELF on my machine; commands start from 13th word, in 
     // big endian order (big endian makes a hexdump easier to read)
-    for (int i = 13*4,j=0; ; i+=4,j++) {
+    for (int i = 13*4,j=64; ; i+=4,j++) {
         word cmd = ((word)fbytes[i] << 24) | 
                    ((word)fbytes[i+1] << 16) | 
                    ((word)fbytes[i+2] << 8) | 
